@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Propane Refill & Exchange Directory</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔥 Texas Propane Directory</h1>
+            <p>Find propane refill & exchange locations near you</p>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="houston.html">Houston</a>
+                <a href="dallas.html">Dallas</a>
+                <a href="san-antonio.html">San Antonio</a>
+                <a href="austin.html">Austin</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Find Propane in Texas</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by city or business name...">
+                <select id="serviceType">
+                    <option value="">All Services</option>
+                    <option value="refill">Refill</option>
+                    <option value="exchange">Exchange</option>
+                </select>
+                <button onclick="searchListings()">Search</button>
+            </div>
+        </section>
+
+        <section class="ads-top">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_ID" data-ad-slot="YOUR_AD_SLOT" data-ad-format="auto"></ins>
+        </section>
+
+        <section class="cities">
+            <h3>Browse by City</h3>
+            <div class="city-grid">
+                <a href="houston.html" class="city-card">
+                    <h4>Houston</h4>
+                    <p>Propane Refill & Exchange</p>
+                </a>
+                <a href="dallas.html" class="city-card">
+                    <h4>Dallas</h4>
+                    <p>Propane Refill & Exchange</p>
+                </a>
+                <a href="san-antonio.html" class="city-card">
+                    <h4>San Antonio</h4>
+                    <p>Propane Refill & Exchange</p>
+                </a>
+                <a href="austin.html" class="city-card">
+                    <h4>Austin</h4>
+                    <p>Propane Refill & Exchange</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="featured">
+            <h3>Featured Listings</h3>
+            <div id="featuredListings" class="listings-grid"></div>
+        </section>
+
+        <section class="ads-bottom">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_ID" data-ad-slot="YOUR_AD_SLOT" data-ad-format="auto"></ins>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Texas Propane Directory. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        loadFeaturedListings();
+    </script>
+</body>
+</html>
