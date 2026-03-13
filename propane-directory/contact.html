@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Texas Propane Directory</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔥 Texas Propane Directory</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="houston.html">Houston</a>
+                <a href="dallas.html">Dallas</a>
+                <a href="san-antonio.html">San Antonio</a>
+                <a href="austin.html">Austin</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <h2>Contact Us</h2>
+            
+            <p>Have a question, suggestion, or want to add your business to our directory? We'd love to hear from you!</p>
+
+            <form class="contact-form" action="mailto:info@propane-directory.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="general">General Inquiry</option>
+                        <option value="listing">Add My Business</option>
+                        <option value="update">Update My Listing</option>
+                        <option value="advertising">Advertising</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+
+            <div class="contact-info">
+                <h3>Other Ways to Reach Us</h3>
+                <p><strong>Email:</strong> info@propane-directory.com</p>
+                <p><strong>Note:</strong> We respond to inquiries within 2-3 business days.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Texas Propane Directory. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+</body>
+</html>
