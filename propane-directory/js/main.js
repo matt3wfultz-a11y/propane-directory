@@ -58,7 +58,7 @@ function createInlineAdUnit() {
     return `<div class="ad-inline">
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-client="ca-pub-3324674498417567"
              data-ad-slot="YOUR_INLINE_AD_SLOT"
              data-ad-format="fluid"
              data-ad-layout-key="-6t+ed+2i-1n-4w">
