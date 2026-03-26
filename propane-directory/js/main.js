@@ -28,16 +28,40 @@ function createListingCard(listing) {
     `;
 }
 
+function createInlineAdUnit() {
+    return `<div class="ad-inline">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="YOUR_INLINE_AD_SLOT"
+             data-ad-format="fluid"
+             data-ad-layout-key="-6t+ed+2i-1n-4w">
+        </ins>
+    </div>`;
+}
+
 function displayListings(listings, containerId = 'listingsContainer') {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
+
     if (listings.length === 0) {
         container.innerHTML = '<p>No listings found. Try a different search.</p>';
         return;
     }
-    
-    container.innerHTML = listings.map(listing => createListingCard(listing)).join('');
+
+    const parts = [];
+    listings.forEach((listing, i) => {
+        parts.push(createListingCard(listing));
+        if ((i + 1) % 3 === 0 && i + 1 < listings.length) {
+            parts.push(createInlineAdUnit());
+        }
+    });
+    container.innerHTML = parts.join('');
+
+    // Initialize any AdSense units injected into the grid
+    container.querySelectorAll('.adsbygoogle').forEach(() => {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    });
 }
 
 async function loadFeaturedListings() {

@@ -30,6 +30,46 @@
     "website": ""
   },
   {
+    "name": "Houston Gas & Propane Supply",
+    "address": "1402 Westheimer Rd",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 555-0401",
+    "type": "refill",
+    "rating": 4.6,
+    "website": ""
+  },
+  {
+    "name": "Bayou City Propane Co",
+    "address": "3311 Kirby Dr",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 555-0502",
+    "type": "refill,exchange",
+    "rating": 4.3,
+    "website": ""
+  },
+  {
+    "name": "Gulf Coast Propane Services",
+    "address": "8820 Bellaire Blvd",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 555-0603",
+    "type": "exchange",
+    "rating": 4.0,
+    "website": ""
+  },
+  {
+    "name": "Heights Propane & Gas",
+    "address": "620 Yale St",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 555-0704",
+    "type": "refill",
+    "rating": 4.7,
+    "website": ""
+  },
+  {
     "name": "Texas Propane Service",
     "address": "321 Cedar Ln",
     "city": "Dallas",
@@ -47,6 +87,56 @@
     "phone": "(214) 555-0200",
     "type": "exchange",
     "rating": 4.3,
+    "website": ""
+  },
+  {
+    "name": "Lone Star Propane Exchange",
+    "address": "1800 Mockingbird Ln",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 555-0301",
+    "type": "exchange",
+    "rating": 4.4,
+    "website": ""
+  },
+  {
+    "name": "DFW Propane & Fuel",
+    "address": "4420 Greenville Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 555-0402",
+    "type": "refill,exchange",
+    "rating": 4.6,
+    "website": ""
+  },
+  {
+    "name": "Oak Cliff Propane Center",
+    "address": "710 W Jefferson Blvd",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 555-0503",
+    "type": "refill",
+    "rating": 4.2,
+    "website": ""
+  },
+  {
+    "name": "North Dallas Gas Supply",
+    "address": "9200 Forest Ln",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(972) 555-0604",
+    "type": "refill,exchange",
+    "rating": 4.5,
+    "website": ""
+  },
+  {
+    "name": "Deep Ellum Propane Works",
+    "address": "2803 Commerce St",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 555-0705",
+    "type": "exchange",
+    "rating": 4.1,
     "website": ""
   },
   {
@@ -70,6 +160,56 @@
     "website": ""
   },
   {
+    "name": "Fiesta City Propane",
+    "address": "1635 Bandera Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 555-0301",
+    "type": "refill",
+    "rating": 4.4,
+    "website": ""
+  },
+  {
+    "name": "South Texas Propane Depot",
+    "address": "4502 Fredericksburg Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 555-0402",
+    "type": "refill,exchange",
+    "rating": 4.7,
+    "website": ""
+  },
+  {
+    "name": "River Walk Gas & Propane",
+    "address": "319 E Commerce St",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 555-0503",
+    "type": "exchange",
+    "rating": 4.2,
+    "website": ""
+  },
+  {
+    "name": "Mission Trail Propane Supply",
+    "address": "6730 Old Highway 90",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 555-0604",
+    "type": "refill",
+    "rating": 4.5,
+    "website": ""
+  },
+  {
+    "name": "Northside Propane Services",
+    "address": "11503 Bandera Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 555-0705",
+    "type": "refill,exchange",
+    "rating": 4.3,
+    "website": ""
+  },
+  {
     "name": "Austin Propane & Gas",
     "address": "567 Congress Ave",
     "city": "Austin",
@@ -87,6 +227,56 @@
     "phone": "(512) 555-0200",
     "type": "refill",
     "rating": 4.4,
+    "website": ""
+  },
+  {
+    "name": "Keep Austin Propane",
+    "address": "2100 S Congress Ave",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 555-0301",
+    "type": "exchange",
+    "rating": 4.5,
+    "website": ""
+  },
+  {
+    "name": "6th Street Gas & Supply",
+    "address": "412 E 6th St",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 555-0402",
+    "type": "refill,exchange",
+    "rating": 4.6,
+    "website": ""
+  },
+  {
+    "name": "Barton Springs Propane",
+    "address": "1700 Barton Springs Rd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 555-0503",
+    "type": "refill",
+    "rating": 4.3,
+    "website": ""
+  },
+  {
+    "name": "Cedar Park Propane Exchange",
+    "address": "900 N Bell Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 555-0604",
+    "type": "exchange",
+    "rating": 4.1,
+    "website": ""
+  },
+  {
+    "name": "South Lamar Propane Co",
+    "address": "3300 S Lamar Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 555-0705",
+    "type": "refill,exchange",
+    "rating": 4.7,
     "website": ""
   }
 ]
