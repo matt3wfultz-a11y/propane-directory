@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.yoursite.com/sitemap.xml
+Sitemap: https://matt3wfultz-a11y.github.io/propane-directory/sitemap.xml
