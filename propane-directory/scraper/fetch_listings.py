@@ -110,6 +110,11 @@ def fetch_city(api_key, location):
             parts = full_address.split(",")
             address = parts[0].strip() if parts else full_address
 
+            # Capture lat/lng from geometry (already returned by text search)
+            geometry = place.get("geometry", {}).get("location", {})
+            lat = geometry.get("lat")
+            lng = geometry.get("lng")
+
             rating = place.get("rating", 0.0)
             review_count = place.get("user_ratings_total", 0)
             service_type = infer_service_type(name)
@@ -130,6 +135,8 @@ def fetch_city(api_key, location):
                 "rating": rating,
                 "reviewCount": review_count,
                 "website": website,
+                "lat": lat,
+                "lng": lng,
             })
 
         page_token = data.get("next_page_token")

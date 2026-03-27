@@ -50,6 +50,7 @@ function createListingCard(listing) {
             <p class="phone"><a href="tel:${listing.phone}">${listing.phone}</a></p>
             <div class="services">${serviceTags}</div>
             ${listing.website ? `<p><a href="${listing.website}" target="_blank" rel="noopener">Visit Website</a></p>` : ''}
+            <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(listing.address + ', ' + listing.city + ', TX')}" target="_blank" rel="noopener">Get Directions</a>
         </div>
     `;
 }

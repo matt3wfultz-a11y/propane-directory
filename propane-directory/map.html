@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propane Locations Map | Texas Propane Directory</title>
+    <meta name="description" content="Map view of all propane refill and exchange locations across Texas. Find the nearest propane supplier to you.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3324674498417567" crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3324674498417567",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔥 Texas Propane Directory</h1>
+            <p>Propane and Propane Accessories</p>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="houston.html">Houston</a>
+                <a href="dallas.html">Dallas</a>
+                <a href="san-antonio.html">San Antonio</a>
+                <a href="austin.html">Austin</a>
+                <a href="map.html">Map</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero" style="padding-bottom: 1rem;">
+            <h2>Propane Locations Map</h2>
+        </section>
+
+        <div class="map-filters" id="cityFilters">
+            <button class="map-filter-btn active" data-city="all">All Cities</button>
+            <button class="map-filter-btn" data-city="Houston">Houston</button>
+            <button class="map-filter-btn" data-city="Dallas">Dallas</button>
+            <button class="map-filter-btn" data-city="San Antonio">San Antonio</button>
+            <button class="map-filter-btn" data-city="Austin">Austin</button>
+        </div>
+
+        <div id="map"></div>
+
+        <section class="ads-bottom" style="margin-top: 1.5rem;">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3324674498417567" data-ad-slot="2526792928" data-ad-format="auto"></ins>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="tagline">I tell you what, that's good propane.</p>
+            <p>&copy; 2026 Texas Propane Directory. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/sp3c=" crossorigin=""></script>
+    <script>
+        const map = L.map('map').setView([31.0, -99.0], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const markerIcon = L.divIcon({
+            className: '',
+            html: `<div style="background:#e8621a;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7],
+        });
+
+        let allMarkers = [];
+        let currentCity = 'all';
+
+        fetch('data/listings.json')
+            .then(r => r.json())
+            .then(listings => {
+                listings.forEach(listing => {
+                    if (!listing.lat || !listing.lng) return;
+
+                    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(listing.address + ', ' + listing.city + ', TX')}`;
+
+                    const popup = `
+                        <div style="font-family: -apple-system, sans-serif; min-width: 180px;">
+                            <strong style="color:#1a3a5c; font-size:0.95rem;">${listing.name}</strong><br>
+                            <span style="color:#5a4a40; font-size:0.85rem;">${listing.address}<br>${listing.city}, TX</span><br>
+                            ${listing.phone ? `<a href="tel:${listing.phone}" style="color:#e8621a; font-weight:600; font-size:0.9rem;">${listing.phone}</a><br>` : ''}
+                            <a href="${directionsUrl}" target="_blank" rel="noopener"
+                               style="display:inline-block;margin-top:6px;padding:4px 10px;background:#1a3a5c;color:white;border-radius:4px;text-decoration:none;font-size:0.8rem;">
+                               Get Directions
+                            </a>
+                        </div>`;
+
+                    const marker = L.marker([listing.lat, listing.lng], { icon: markerIcon })
+                        .bindPopup(popup);
+
+                    marker.listingCity = listing.city;
+                    allMarkers.push(marker);
+                    marker.addTo(map);
+                });
+
+                if (allMarkers.length === 0) {
+                    document.getElementById('map').innerHTML =
+                        '<p style="padding:2rem;text-align:center;color:#5a4a40;">No coordinates yet — re-run the scraper to populate the map.</p>';
+                }
+            });
+
+        document.getElementById('cityFilters').addEventListener('click', e => {
+            if (!e.target.classList.contains('map-filter-btn')) return;
+
+            document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentCity = e.target.dataset.city;
+
+            allMarkers.forEach(marker => {
+                if (currentCity === 'all' || marker.listingCity === currentCity) {
+                    marker.addTo(map);
+                } else {
+                    marker.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
