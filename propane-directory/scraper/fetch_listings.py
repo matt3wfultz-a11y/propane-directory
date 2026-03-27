@@ -69,9 +69,18 @@ def place_details(api_key, place_id):
         "fields": "formatted_phone_number,website,business_status",
         "key": api_key,
     }
-    resp = requests.get(f"{PLACES_BASE}/details/json", params=params, timeout=15)
-    resp.raise_for_status()
-    return resp.json().get("result", {})
+    for attempt in range(4):
+        try:
+            resp = requests.get(f"{PLACES_BASE}/details/json", params=params, timeout=30)
+            resp.raise_for_status()
+            return resp.json().get("result", {})
+        except Exception as e:
+            if attempt == 3:
+                print(f"    Warning: detail call failed after 4 attempts ({e}), skipping.")
+                return {}
+            wait = 2 ** attempt
+            print(f"    Retrying in {wait}s...")
+            time.sleep(wait)
 
 
 def fetch_city(api_key, location):
@@ -123,7 +132,7 @@ def fetch_city(api_key, location):
             details = place_details(api_key, place["place_id"])
             phone = format_phone(details.get("formatted_phone_number", ""))
             website = details.get("website", "")
-            time.sleep(0.1)
+            time.sleep(0.5)
 
             listings.append({
                 "name": name,
