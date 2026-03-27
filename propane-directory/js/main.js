@@ -13,31 +13,81 @@ async function loadListings() {
 function createListingCard(listing) {
     const services = listing.type.split(',').map(s => s.trim());
     const serviceTags = services.map(s => `<span class="service-tag">${s.charAt(0).toUpperCase() + s.slice(1)}</span>`).join('');
-    
+
     const stars = listing.rating ? '★'.repeat(Math.floor(listing.rating)) + (listing.rating % 1 >= 0.5 ? '½' : '') : '';
-    
+
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: listing.name,
+        address: {
+            '@type': 'PostalAddress',
+            streetAddress: listing.address,
+            addressLocality: listing.city,
+            addressRegion: listing.state,
+            addressCountry: 'US'
+        },
+        telephone: listing.phone,
+        description: `Propane ${listing.type} services in ${listing.city}, TX`
+    };
+    if (listing.rating) {
+        schema.aggregateRating = {
+            '@type': 'AggregateRating',
+            ratingValue: listing.rating,
+            bestRating: '5',
+            worstRating: '1',
+            reviewCount: listing.reviewCount || '10'
+        };
+    }
+    if (listing.website) schema.url = listing.website;
+
     return `
         <div class="listing-card">
+            <script type="application/ld+json">${JSON.stringify(schema)}<\/script>
             ${listing.rating ? `<div class="rating">${stars} (${listing.rating})</div>` : ''}
             <h4>${listing.name}</h4>
-            <p class="address">${listing.address}</p>
-            <p class="phone">${listing.phone}</p>
+            <p class="address">${listing.address}, ${listing.city}, ${listing.state}</p>
+            <p class="phone"><a href="tel:${listing.phone}">${listing.phone}</a></p>
             <div class="services">${serviceTags}</div>
-            ${listing.website ? `<p><a href="${listing.website}" target="_blank">Website</a></p>` : ''}
+            ${listing.website ? `<p><a href="${listing.website}" target="_blank" rel="noopener">Visit Website</a></p>` : ''}
         </div>
     `;
+}
+
+function createInlineAdUnit() {
+    return `<div class="ad-inline">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3324674498417567"
+             data-ad-slot="YOUR_INLINE_AD_SLOT"
+             data-ad-format="fluid"
+             data-ad-layout-key="-6t+ed+2i-1n-4w">
+        </ins>
+    </div>`;
 }
 
 function displayListings(listings, containerId = 'listingsContainer') {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
+
     if (listings.length === 0) {
         container.innerHTML = '<p>No listings found. Try a different search.</p>';
         return;
     }
-    
-    container.innerHTML = listings.map(listing => createListingCard(listing)).join('');
+
+    const parts = [];
+    listings.forEach((listing, i) => {
+        parts.push(createListingCard(listing));
+        if ((i + 1) % 3 === 0 && i + 1 < listings.length) {
+            parts.push(createInlineAdUnit());
+        }
+    });
+    container.innerHTML = parts.join('');
+
+    // Initialize any AdSense units injected into the grid
+    container.querySelectorAll('.adsbygoogle').forEach(() => {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    });
 }
 
 async function loadFeaturedListings() {
