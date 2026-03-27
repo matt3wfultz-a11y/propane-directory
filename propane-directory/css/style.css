@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +9,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #eef0f2;
+    color: #3d2b1f;
+    background-color: #f5f0e8;
 }
 
 .container {
@@ -19,20 +21,28 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #6f1a07 0%, #57a773 100%);
+    background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%);
     color: white;
     padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 header h1 {
+    font-family: 'Oswald', sans-serif;
     font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 0.3rem;
+    letter-spacing: 0.5px;
 }
 
 header p {
     opacity: 0.9;
     margin-bottom: 1rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
 }
 
 nav {
@@ -46,6 +56,9 @@ nav a {
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     transition: background 0.3s;
 }
 
@@ -66,9 +79,12 @@ main {
 }
 
 .hero h2 {
-    font-size: 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #6f1a07;
+    color: #1a3a5c;
+    letter-spacing: 0.5px;
 }
 
 .search-box {
@@ -83,31 +99,35 @@ main {
 .search-box input,
 .search-box select {
     padding: 12px 16px;
-    border: 2px solid #726e75;
+    border: 2px solid #c4b8a8;
     border-radius: 6px;
     font-size: 1rem;
     min-width: 200px;
+    background: #fffdf9;
 }
 
 .search-box input:focus,
 .search-box select:focus {
     outline: none;
-    border-color: #f79c34;
+    border-color: #e8621a;
 }
 
 .search-box button {
     padding: 12px 30px;
-    background: #f79c34;
+    background: #e8621a;
     color: white;
     border: none;
     border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
     font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .search-box button:hover {
-    background: #d4851c;
+    background: #c4511a;
 }
 
 /* City Grid */
@@ -118,10 +138,13 @@ main {
 .cities h3,
 .featured h3,
 .listings h3 {
-    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #6f1a07;
+    color: #1a3a5c;
     text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .city-grid {
@@ -132,13 +155,14 @@ main {
 }
 
 .city-card {
-    background: white;
+    background: #fffdf9;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     text-decoration: none;
     color: inherit;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-top: 4px solid #e8621a;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -148,13 +172,16 @@ main {
 }
 
 .city-card h4 {
-    font-size: 1.3rem;
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a3a5c;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 .city-card p {
-    color: #726e75;
+    color: #5a4a40;
     font-size: 0.9rem;
 }
 
@@ -166,10 +193,11 @@ main {
 }
 
 .listing-card {
-    background: white;
+    background: #fffdf9;
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-left: 4px solid #e8621a;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -179,18 +207,21 @@ main {
 }
 
 .listing-card h4 {
-    font-size: 1.1rem;
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a3a5c;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.3px;
 }
 
 .listing-card .address {
-    color: #726e75;
+    color: #5a4a40;
     margin-bottom: 0.5rem;
 }
 
 .listing-card .phone {
-    color: #f79c34;
+    color: #e8621a;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
@@ -200,24 +231,48 @@ main {
     gap: 0.5rem;
     flex-wrap: wrap;
     margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .service-tag {
-    background: #d4ead9;
-    color: #57a773;
+    background: #d4e8d4;
+    color: #2d6b3c;
     padding: 3px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
 }
 
 .rating {
-    color: #f79c34;
+    color: #e8621a;
     margin-bottom: 0.5rem;
+}
+
+/* Directions Button */
+.btn-directions {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 7px 16px;
+    background: #1a3a5c;
+    color: white;
+    border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-directions:hover {
+    background: #2d6a9f;
 }
 
 /* Content Pages */
 .content {
-    background: white;
+    background: #fffdf9;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
@@ -226,12 +281,14 @@ main {
 }
 
 .content h2 {
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    color: #1a3a5c;
     margin-bottom: 1rem;
 }
 
 .content h3 {
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    color: #1a3a5c;
     margin: 1.5rem 0 0.5rem;
 }
 
@@ -240,7 +297,7 @@ main {
 }
 
 .content a {
-    color: #726e75;
+    color: #2d6a9f;
 }
 
 /* Contact Form */
@@ -257,6 +314,7 @@ main {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    font-family: 'Oswald', sans-serif;
 }
 
 .form-group input,
@@ -264,37 +322,41 @@ main {
 .form-group textarea {
     width: 100%;
     padding: 10px;
-    border: 2px solid #726e75;
+    border: 2px solid #c4b8a8;
     border-radius: 6px;
     font-size: 1rem;
+    background: #fffdf9;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #f79c34;
+    border-color: #e8621a;
 }
 
 .btn-primary {
     padding: 12px 30px;
-    background: #f79c34;
+    background: #e8621a;
     color: white;
     border: none;
     border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
     font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .btn-primary:hover {
-    background: #d4851c;
+    background: #c4511a;
 }
 
 .contact-info {
     margin-top: 2rem;
     padding: 1.5rem;
-    background: #eef0f2;
+    background: #f5f0e8;
     border-radius: 8px;
 }
 
@@ -310,7 +372,7 @@ main {
 }
 
 .ads-top {
-    background: #dde0e3;
+    background: #e8e2d8;
     border-radius: 8px;
 }
 
@@ -324,7 +386,7 @@ main {
 /* City Info & About Directory */
 .city-info,
 .about-directory {
-    background: white;
+    background: #fffdf9;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
@@ -333,15 +395,17 @@ main {
 
 .city-info h3,
 .about-directory h3 {
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    color: #1a3a5c;
     font-size: 1.3rem;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .city-info p,
 .about-directory p {
     margin-bottom: 0.75rem;
-    color: #444;
+    color: #3d2b1f;
 }
 
 /* FAQ Section */
@@ -350,34 +414,39 @@ main {
 }
 
 .faq h3 {
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    color: #1a3a5c;
     font-size: 1.3rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .faq-item {
-    background: white;
+    background: #fffdf9;
     border-radius: 8px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 3px solid #e8621a;
 }
 
 .faq-item h4 {
-    color: #6f1a07;
+    font-family: 'Oswald', sans-serif;
+    color: #1a3a5c;
     margin-bottom: 0.5rem;
     font-size: 1rem;
+    font-weight: 600;
 }
 
 .faq-item p {
-    color: #444;
+    color: #3d2b1f;
     margin: 0;
 }
 
 /* Clickable phone links */
 .listing-card .phone a {
-    color: #f79c34;
+    color: #e8621a;
     text-decoration: none;
 }
 
@@ -385,13 +454,55 @@ main {
     text-decoration: underline;
 }
 
+/* Map page */
+#map {
+    height: calc(100vh - 180px);
+    min-height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.map-filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.map-filter-btn {
+    padding: 8px 18px;
+    border: 2px solid #1a3a5c;
+    border-radius: 20px;
+    background: white;
+    color: #1a3a5c;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.map-filter-btn.active,
+.map-filter-btn:hover {
+    background: #1a3a5c;
+    color: white;
+}
+
 /* Footer */
 footer {
-    background: #6f1a07;
+    background: #1a3a5c;
     color: white;
     padding: 2rem 0;
     margin-top: 3rem;
     text-align: center;
+}
+
+footer .tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
 }
 
 footer a {
@@ -417,5 +528,9 @@ footer p {
     .city-grid,
     .listings-grid {
         grid-template-columns: 1fr;
+    }
+
+    #map {
+        height: 60vh;
     }
 }

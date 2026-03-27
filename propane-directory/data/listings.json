@@ -33,17 +33,6 @@
     "website": "https://forkliftpropane.com/locations/houston-propane-express/?utm_source=gbp&utm_medium=organic"
   },
   {
-    "name": "Houston's Best Service Center",
-    "address": "5420 N Shepherd Dr",
-    "city": "Houston",
-    "state": "TX",
-    "phone": "(713) 742-5100",
-    "type": "refill,exchange",
-    "rating": 4.5,
-    "reviewCount": 2,
-    "website": "https://www.houstonbestservice.com/"
-  },
-  {
     "name": "A-B Gas/a Plus Gas Co Inc",
     "address": "1900 Silber Rd",
     "city": "Houston",
@@ -53,6 +42,17 @@
     "rating": 4.7,
     "reviewCount": 30,
     "website": ""
+  },
+  {
+    "name": "Houston's Best Service Center",
+    "address": "5420 N Shepherd Dr",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 742-5100",
+    "type": "refill,exchange",
+    "rating": 4.5,
+    "reviewCount": 2,
+    "website": "https://www.houstonbestservice.com/"
   },
   {
     "name": "R & R Propane",
@@ -88,17 +88,6 @@
     "website": "https://www.ferrellgas.com/locations/detail/houston-tx/243140/?utm_source=local&utm_medium=organic&utm_campaign=gmb"
   },
   {
-    "name": "Amerigas",
-    "address": "8903 Lawndale St",
-    "city": "Houston",
-    "state": "TX",
-    "phone": "(713) 923-7943",
-    "type": "exchange",
-    "rating": 1,
-    "reviewCount": 4,
-    "website": "http://www.amerigas.com/"
-  },
-  {
     "name": "Cy-Fair Propane Company",
     "address": "23248 Northwest Fwy",
     "city": "Houston",
@@ -121,17 +110,6 @@
     "website": "http://propanerefillhouston.com/"
   },
   {
-    "name": "Pat's Propane Inc.",
-    "address": "6907 Brittmoore Rd",
-    "city": "Houston",
-    "state": "TX",
-    "phone": "(281) 890-2025",
-    "type": "refill,exchange",
-    "rating": 3.8,
-    "reviewCount": 17,
-    "website": ""
-  },
-  {
     "name": "Noremac Gas",
     "address": "5830 Clara Rd",
     "city": "Houston",
@@ -144,24 +122,35 @@
   },
   {
     "name": "Propane Refill at U-Haul",
-    "address": "11300 S Sam Houston Pkwy W",
+    "address": "8518 S Texas 6",
     "city": "Houston",
     "state": "TX",
-    "phone": "(281) 407-2750",
+    "phone": "(281) 879-6065",
     "type": "exchange",
-    "rating": 3,
-    "reviewCount": 4,
-    "website": "https://www.uhaul.com/Locations/Propane-near-Houston-TX-77031/930074/?utm_source=gmb&utm_medium=propane&utm_campaign=uhaulsmlm&utm_content=930074"
+    "rating": 3.7,
+    "reviewCount": 3,
+    "website": "https://www.uhaul.com/Locations/Propane-near-Houston-TX-77083/746028/?utm_source=gmb&utm_medium=propane&utm_campaign=uhaulsmlm&utm_content=746028"
   },
   {
-    "name": "Northtown Service Center Inc",
-    "address": "5610 North Fwy",
+    "name": "Amerigas",
+    "address": "8903 Lawndale St",
     "city": "Houston",
     "state": "TX",
-    "phone": "(713) 699-2894",
+    "phone": "(713) 923-7943",
+    "type": "exchange",
+    "rating": 1,
+    "reviewCount": 4,
+    "website": "http://www.amerigas.com/"
+  },
+  {
+    "name": "Pat's Propane Inc.",
+    "address": "6907 Brittmoore Rd",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(281) 890-2025",
     "type": "refill,exchange",
-    "rating": 4.6,
-    "reviewCount": 29,
+    "rating": 3.8,
+    "reviewCount": 17,
     "website": ""
   },
   {
@@ -174,6 +163,17 @@
     "rating": 4,
     "reviewCount": 33,
     "website": "http://www.marinpropane.com/"
+  },
+  {
+    "name": "Northtown Service Center Inc",
+    "address": "5610 North Fwy",
+    "city": "Houston",
+    "state": "TX",
+    "phone": "(713) 699-2894",
+    "type": "refill,exchange",
+    "rating": 4.6,
+    "reviewCount": 29,
+    "website": ""
   },
   {
     "name": "Baygas Propane",
@@ -196,17 +196,6 @@
     "rating": 3.7,
     "reviewCount": 92,
     "website": "https://www.busterbrownpropane.com/?utm_source=gbp&utm_medium=organic&utm_campaign=uberall"
-  },
-  {
-    "name": "U-Haul Moving & Storage at Sugarland Airport Area",
-    "address": "8518 S Texas 6",
-    "city": "Houston",
-    "state": "TX",
-    "phone": "(281) 879-6065",
-    "type": "exchange",
-    "rating": 3.2,
-    "reviewCount": 205,
-    "website": "https://www.uhaul.com/Locations/Truck-Rentals-near-Houston-TX-77083/746028/?utm_source=gmb&utm_medium=primary&utm_campaign=uhaulsmlm&utm_content=746028"
   },
   {
     "name": "Propane",
@@ -286,17 +275,6 @@
     "website": "http://godfreypropane.com/"
   },
   {
-    "name": "Propane Exchange at The Home Depot",
-    "address": "6110 Lemmon Ave",
-    "city": "Dallas",
-    "state": "TX",
-    "phone": "(214) 654-9939",
-    "type": "exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://www.homedepot.com/l/Lemmon-Avenue/TX/Dallas/75209/589?emt=MSPEGMBGoogleMaps"
-  },
-  {
     "name": "Irving Propane",
     "address": "1307 W Airport Fwy",
     "city": "Dallas",
@@ -363,6 +341,17 @@
     "website": "https://www.servisgas.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-listing"
   },
   {
+    "name": "Propane Exchange at The Home Depot",
+    "address": "6110 Lemmon Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 654-9939",
+    "type": "exchange",
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": "https://www.homedepot.com/l/Lemmon-Avenue/TX/Dallas/75209/589?emt=MSPEGMBGoogleMaps"
+  },
+  {
     "name": "Pinnacle Propane Corporate Office",
     "address": "600 E Las Colinas Blvd #1650",
     "city": "Dallas",
@@ -372,28 +361,6 @@
     "rating": 2.6,
     "reviewCount": 63,
     "website": "https://www.pinnaclepropane.com/"
-  },
-  {
-    "name": "Tom Thumb Express",
-    "address": "2720 Live Oak St",
-    "city": "Dallas",
-    "state": "TX",
-    "phone": "(469) 372-3349",
-    "type": "refill,exchange",
-    "rating": 4.3,
-    "reviewCount": 169,
-    "website": "https://local.fuel.tomthumb.com/tx/dallas/2720-live-oak-st.html"
-  },
-  {
-    "name": "The Gas Pipe Smoke Shop",
-    "address": "4420 Maple Ave",
-    "city": "Dallas",
-    "state": "TX",
-    "phone": "(214) 526-5982",
-    "type": "refill,exchange",
-    "rating": 4.4,
-    "reviewCount": 650,
-    "website": "https://thegaspipe.net/"
   },
   {
     "name": "Clean Energy",
@@ -407,15 +374,37 @@
     "website": "http://www.cleanenergyfuels.com/"
   },
   {
-    "name": "Enderby Gas, Inc.",
-    "address": "1405 US-82",
+    "name": "Chevron",
+    "address": "4423 Live Oak St",
     "city": "Dallas",
     "state": "TX",
-    "phone": "(940) 665-3457",
+    "phone": "(855) 285-9595",
     "type": "refill,exchange",
-    "rating": 4.6,
-    "reviewCount": 119,
-    "website": "https://enderbygas.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-listing-gainesville"
+    "rating": 2.5,
+    "reviewCount": 15,
+    "website": "https://www.chevron.com/"
+  },
+  {
+    "name": "Metroplex Welding Supply",
+    "address": "1970 W Northwest Hwy",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(972) 556-0213",
+    "type": "refill,exchange",
+    "rating": 4.4,
+    "reviewCount": 67,
+    "website": "http://www.metroweld.com/"
+  },
+  {
+    "name": "Sunoco",
+    "address": "1406 Greenville Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "phone": "(214) 823-5717",
+    "type": "refill,exchange",
+    "rating": 4.2,
+    "reviewCount": 27,
+    "website": "https://www.sunoco.com/locations/store/1406-greenville-ave-dallas-tx-0944822600"
   },
   {
     "name": "Propane Depot",
@@ -451,37 +440,15 @@
     "website": "http://www.missiongas.com/"
   },
   {
-    "name": "Alamo Propane Delivery Inc.",
-    "address": "13334 Western Oak Dr",
+    "name": "Terry Garnett's Propane",
+    "address": "400 W Mercer St",
     "city": "San Antonio",
     "state": "TX",
-    "phone": "(210) 695-1030",
+    "phone": "(512) 894-4480",
     "type": "refill,exchange",
-    "rating": 4.8,
-    "reviewCount": 20,
-    "website": "https://www.alamopropanedelivery.com/"
-  },
-  {
-    "name": "Low Price Gas",
-    "address": "29094 US-281",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(830) 980-2900",
-    "type": "refill,exchange",
-    "rating": 4.7,
-    "reviewCount": 24,
-    "website": "https://www.lowpricegaspropane.com/"
-  },
-  {
-    "name": "The Propane Guy/work",
-    "address": "2547 US-281",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(830) 833-0300",
-    "type": "refill,exchange",
-    "rating": 4.2,
-    "reviewCount": 26,
-    "website": "http://www.thepropaneguytx.com/"
+    "rating": 3.9,
+    "reviewCount": 47,
+    "website": "https://garnettspropane.com/?utm_source=gmb&utm_medium=local&utm_campaign=website"
   },
   {
     "name": "Bell Hydrogas Inc",
@@ -495,26 +462,15 @@
     "website": "https://www.bellhydrogas.com/"
   },
   {
-    "name": "Propane Exchange at The Home Depot",
-    "address": "5101 Cambray Dr",
+    "name": "The Propane Guy/work",
+    "address": "2547 US-281",
     "city": "San Antonio",
     "state": "TX",
-    "phone": "(210) 520-0630",
-    "type": "exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://www.homedepot.com/l/Cambray/TX/San-Antonio/78229/581?emt=MSPEGMBGoogleMaps"
-  },
-  {
-    "name": "Terry Garnett's Propane",
-    "address": "400 W Mercer St",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(512) 894-4480",
+    "phone": "(830) 833-0300",
     "type": "refill,exchange",
-    "rating": 3.9,
-    "reviewCount": 47,
-    "website": "https://garnettspropane.com/?utm_source=gmb&utm_medium=local&utm_campaign=website"
+    "rating": 4.2,
+    "reviewCount": 26,
+    "website": "http://www.thepropaneguytx.com/"
   },
   {
     "name": "Propane Depot, Inc",
@@ -528,15 +484,26 @@
     "website": "http://www.propanedepot.net/"
   },
   {
-    "name": "Hill Country Propane & Storage",
-    "address": "33240 US-281",
+    "name": "Low Price Gas",
+    "address": "29094 US-281",
     "city": "San Antonio",
     "state": "TX",
-    "phone": "(830) 438-7011",
+    "phone": "(830) 980-2900",
     "type": "refill,exchange",
-    "rating": 4.3,
+    "rating": 4.7,
     "reviewCount": 24,
-    "website": "https://281propane.com/"
+    "website": "https://www.lowpricegaspropane.com/"
+  },
+  {
+    "name": "Alamo Propane Delivery Inc.",
+    "address": "13334 Western Oak Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 695-1030",
+    "type": "refill,exchange",
+    "rating": 4.8,
+    "reviewCount": 20,
+    "website": "https://www.alamopropanedelivery.com/"
   },
   {
     "name": "Heart of Texas Propane - Dripping Springs",
@@ -550,15 +517,48 @@
     "website": "https://www.hotpropane.com/?utm_source=gbp&utm_medium=organic&utm_campaign=uberall"
   },
   {
-    "name": "Longhorn Propane LP",
-    "address": "1763 FM2673",
+    "name": "Hill Country Propane & Storage",
+    "address": "33240 US-281",
     "city": "San Antonio",
     "state": "TX",
-    "phone": "(830) 964-2525",
+    "phone": "(830) 438-7011",
     "type": "refill,exchange",
     "rating": 4.3,
-    "reviewCount": 37,
-    "website": "http://www.longhornpropane.net"
+    "reviewCount": 24,
+    "website": "https://281propane.com/"
+  },
+  {
+    "name": "Pico Propane and Fuels",
+    "address": "843 TX-46 Unit B",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(830) 368-2722",
+    "type": "refill,exchange",
+    "rating": 4.8,
+    "reviewCount": 137,
+    "website": "https://www.picopropane.com/?utm_source=gmb&utm_medium=organic&utm_campaign=uberall"
+  },
+  {
+    "name": "Direct Propane Services",
+    "address": "2771 State Hwy 71",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(512) 389-3700",
+    "type": "refill,exchange",
+    "rating": 4.8,
+    "reviewCount": 461,
+    "website": "http://www.directpropaneservices.com/"
+  },
+  {
+    "name": "Blue Rhino Propane Tank Exchange",
+    "address": "1955 Nacogdoches Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(800) 258-7466",
+    "type": "exchange",
+    "rating": 5,
+    "reviewCount": 1,
+    "website": "https://bluerhino.com/propane-finder"
   },
   {
     "name": "Rockin Propane LPG",
@@ -572,6 +572,61 @@
     "website": "https://www.rockinpropane.com/"
   },
   {
+    "name": "Longhorn Propane LP",
+    "address": "1763 FM2673",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(830) 964-2525",
+    "type": "refill,exchange",
+    "rating": 4.3,
+    "reviewCount": 37,
+    "website": "http://www.longhornpropane.net"
+  },
+  {
+    "name": "Robbins Propane",
+    "address": "3127 US-90",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(830) 931-3333",
+    "type": "refill,exchange",
+    "rating": 4.9,
+    "reviewCount": 63,
+    "website": "https://www.robbinspropane.com/"
+  },
+  {
+    "name": "SouthTex Propane",
+    "address": "9984 U.S. Hwy 87 W",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 997-8241",
+    "type": "refill,exchange",
+    "rating": 4.4,
+    "reviewCount": 11,
+    "website": "https://southtexpropane.net/"
+  },
+  {
+    "name": "Pinnacle Propane",
+    "address": "1420 S",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(830) 693-4383",
+    "type": "refill,exchange",
+    "rating": 3.7,
+    "reviewCount": 34,
+    "website": "https://www.pinnaclepropane.com/propane-near-me?search=800+Howard+Cavasos+Blvd+N&dealerType=Cylinder&dealerId=71760&view=details&lat=30.545868&lng=-98.276651"
+  },
+  {
+    "name": "Propane Exchange at The Home Depot",
+    "address": "5101 Cambray Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(210) 520-0630",
+    "type": "exchange",
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": "https://www.homedepot.com/l/Cambray/TX/San-Antonio/78229/581?emt=MSPEGMBGoogleMaps"
+  },
+  {
     "name": "Hill Country Hydro Gas",
     "address": "703 4th St",
     "city": "San Antonio",
@@ -581,17 +636,6 @@
     "rating": 5,
     "reviewCount": 2,
     "website": "https://hillcountryhydrogas.com/"
-  },
-  {
-    "name": "Blue Rhino Propane Tank Exchange",
-    "address": "1955 Nacogdoches Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(800) 258-7466",
-    "type": "exchange",
-    "rating": 5,
-    "reviewCount": 1,
-    "website": "https://bluerhino.com/propane-finder"
   },
   {
     "name": "Propane Refill at U-Haul",
@@ -616,39 +660,6 @@
     "website": "https://www.bellhydrogas.com/"
   },
   {
-    "name": "Robbins Propane",
-    "address": "3127 US-90",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(830) 931-3333",
-    "type": "refill,exchange",
-    "rating": 4.9,
-    "reviewCount": 63,
-    "website": "https://www.robbinspropane.com/"
-  },
-  {
-    "name": "Direct Propane Services",
-    "address": "2771 State Hwy 71",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(512) 389-3700",
-    "type": "refill,exchange",
-    "rating": 4.8,
-    "reviewCount": 461,
-    "website": "http://www.directpropaneservices.com/"
-  },
-  {
-    "name": "Pico Propane and Fuels",
-    "address": "843 TX-46 Unit B",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(830) 368-2722",
-    "type": "refill,exchange",
-    "rating": 4.8,
-    "reviewCount": 137,
-    "website": "https://www.picopropane.com/?utm_source=gmb&utm_medium=organic&utm_campaign=uberall"
-  },
-  {
     "name": "McCraw Oil & Propane",
     "address": "1302 Main St",
     "city": "San Antonio",
@@ -658,17 +669,6 @@
     "rating": 4.2,
     "reviewCount": 10,
     "website": "https://mccrawoilandpropane.com/locations/mccraw-oil-blanco-texas/?utm_source=google&utm_medium=organic&utm_campaign=GMB"
-  },
-  {
-    "name": "Pinnacle Propane",
-    "address": "1420 S",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(830) 693-4383",
-    "type": "refill,exchange",
-    "rating": 3.7,
-    "reviewCount": 34,
-    "website": "https://www.pinnaclepropane.com/propane-near-me?search=800+Howard+Cavasos+Blvd+N&dealerType=Cylinder&dealerId=71760&view=details&lat=30.545868&lng=-98.276651"
   },
   {
     "name": "Amerigas Propane Exchange",
@@ -682,17 +682,6 @@
     "website": "https://amerigas.com/locations/find-propane"
   },
   {
-    "name": "SouthTex Propane",
-    "address": "9984 U.S. Hwy 87 W",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(210) 997-8241",
-    "type": "refill,exchange",
-    "rating": 4.4,
-    "reviewCount": 11,
-    "website": "https://southtexpropane.net/"
-  },
-  {
     "name": "U-Haul Moving & Storage at San Pedro",
     "address": "5810 San Pedro Ave",
     "city": "San Antonio",
@@ -702,17 +691,6 @@
     "rating": 3.1,
     "reviewCount": 301,
     "website": "https://www.uhaul.com/Locations/Truck-Rentals-near-San-Antonio-TX-78212/744080/?utm_source=gmb&utm_medium=primary&utm_campaign=uhaulsmlm&utm_content=744080"
-  },
-  {
-    "name": "Five Point Gas Station",
-    "address": "126 Fredericksburg Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "phone": "(210) 465-9929",
-    "type": "refill,exchange",
-    "rating": 4.3,
-    "reviewCount": 78,
-    "website": ""
   },
   {
     "name": "Stanley's Ice Station",
@@ -726,15 +704,15 @@
     "website": ""
   },
   {
-    "name": "Blue Rhino Propane Exchange",
-    "address": "7901 Callaghan Rd",
+    "name": "Five Point Gas Station",
+    "address": "126 Fredericksburg Rd",
     "city": "San Antonio",
     "state": "TX",
-    "phone": "(800) 258-7466",
-    "type": "exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://bluerhino.com/propane-finder"
+    "phone": "(210) 465-9929",
+    "type": "refill,exchange",
+    "rating": 4.3,
+    "reviewCount": 78,
+    "website": ""
   },
   {
     "name": "Blue Rhino",
@@ -746,6 +724,17 @@
     "rating": 0.0,
     "reviewCount": 0,
     "website": "https://bluerhino.com/propane-finder?utm_source=google&utm_medium=map&utm_campaign=vending_map&utm_content=226477"
+  },
+  {
+    "name": "Blue Rhino Propane Exchange",
+    "address": "4801 Walzem Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "phone": "(800) 258-7466",
+    "type": "exchange",
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": "https://bluerhino.com/propane-finder"
   },
   {
     "name": "Heart of Texas Propane - Dripping Springs",
@@ -825,26 +814,15 @@
     "website": "https://www.ferrellgas.com/propane-locations/tx/austin/us-hwy-183-s/254010/?utm_source=local&utm_medium=organic&utm_campaign=gmb"
   },
   {
-    "name": "Amerigas propane",
-    "address": "10515 N Mopac Expy",
+    "name": "AmeriGas Propane",
+    "address": "9751 US-290",
     "city": "Austin",
     "state": "TX",
-    "phone": "",
+    "phone": "(512) 339-2676",
     "type": "exchange",
-    "rating": 5,
-    "reviewCount": 1,
-    "website": ""
-  },
-  {
-    "name": "Propane Exchange at The Home Depot",
-    "address": "1200 Home Depot Blvd",
-    "city": "Austin",
-    "state": "TX",
-    "phone": "(512) 892-3035",
-    "type": "exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://www.homedepot.com/l/South-Austin/TX/Sunset-Valley/78745/6570?emt=MSPEGMBGoogleMaps"
+    "rating": 2,
+    "reviewCount": 121,
+    "website": "https://www.amerigas.com/"
   },
   {
     "name": "Action Propane Inc",
@@ -858,6 +836,17 @@
     "website": "http://www.actionpropaneinc.com/"
   },
   {
+    "name": "Propane Plus LLC",
+    "address": "450 Co Rd 180 Suite B",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 259-7587",
+    "type": "refill,exchange",
+    "rating": 4.6,
+    "reviewCount": 85,
+    "website": "https://propaneplusatx.com/"
+  },
+  {
     "name": "Oliver Propane Solutions",
     "address": "6448 E Hwy 290 suite f/102",
     "city": "Austin",
@@ -869,15 +858,15 @@
     "website": "https://www.oliverpropanesolutions.com/"
   },
   {
-    "name": "Propane Plus LLC",
-    "address": "450 Co Rd 180 Suite B",
+    "name": "Propane Exchange at The Home Depot",
+    "address": "260 US-290",
     "city": "Austin",
     "state": "TX",
-    "phone": "(512) 259-7587",
-    "type": "refill,exchange",
-    "rating": 4.6,
-    "reviewCount": 85,
-    "website": "https://propaneplusatx.com/"
+    "phone": "(512) 858-5041",
+    "type": "exchange",
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": "https://www.homedepot.com/l/Dripping-Springs/TX/Dripping-Springs/78620/8995?emt=MSPEGMBGoogleMaps"
   },
   {
     "name": "Propane Refill at U-Haul",
@@ -924,15 +913,15 @@
     "website": "https://www.uhaul.com/Locations/Truck-Rentals-near-Austin-TX-78704/737071/?utm_source=gmb&utm_medium=primary&utm_campaign=uhaulsmlm&utm_content=737071"
   },
   {
-    "name": "Randalls Fuel Station",
-    "address": "2025 W Ben White Blvd",
+    "name": "Suburban Propane",
+    "address": "2100 Old Airport Rd",
     "city": "Austin",
     "state": "TX",
-    "phone": "(512) 443-3083",
+    "phone": "(512) 836-8447",
     "type": "refill,exchange",
-    "rating": 4.3,
-    "reviewCount": 126,
-    "website": "https://local.fuel.randalls.com/tx/austin/2025-w-ben-white-blvd.html"
+    "rating": 4.5,
+    "reviewCount": 179,
+    "website": "http://www.suburbanpropane.com/location/austin-tx/"
   },
   {
     "name": "Propane Service Corporation",
@@ -944,17 +933,6 @@
     "rating": 4.7,
     "reviewCount": 3,
     "website": "http://propaneservicecorp.com/"
-  },
-  {
-    "name": "Suburban Propane",
-    "address": "2100 Old Airport Rd",
-    "city": "Austin",
-    "state": "TX",
-    "phone": "(512) 836-8447",
-    "type": "refill,exchange",
-    "rating": 4.5,
-    "reviewCount": 179,
-    "website": "http://www.suburbanpropane.com/location/austin-tx/"
   },
   {
     "name": "Propane Council of Texas",
@@ -990,17 +968,6 @@
     "website": "https://www.sunoutdoors.com/texas/sun-outdoors-lake-travis"
   },
   {
-    "name": "Amerigas Propane Exchange",
-    "address": "5445 US-290",
-    "city": "Austin",
-    "state": "TX",
-    "phone": "",
-    "type": "exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://www.amerigas.com/locations/find-propane"
-  },
-  {
     "name": "Blue Rhino",
     "address": "2525 W Anderson Ln. Ste W",
     "city": "Austin",
@@ -1010,6 +977,28 @@
     "rating": 4,
     "reviewCount": 1,
     "website": "https://bluerhino.com/propane-finder?utm_source=google&utm_medium=map&utm_campaign=vending_map&utm_content=247969"
+  },
+  {
+    "name": "Propane Exchange at U-Haul",
+    "address": "12611 Research Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 258-5255",
+    "type": "exchange",
+    "rating": 1,
+    "reviewCount": 4,
+    "website": "https://www.uhaul.com/Locations/Propane-near-Austin-TX-78759/737044/?utm_source=gmb&utm_medium=propane&utm_campaign=uhaulsmlm&utm_content=737044"
+  },
+  {
+    "name": "Randalls Fuel Station",
+    "address": "2025 W Ben White Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 443-3083",
+    "type": "refill,exchange",
+    "rating": 4.3,
+    "reviewCount": 126,
+    "website": "https://local.fuel.randalls.com/tx/austin/2025-w-ben-white-blvd.html"
   },
   {
     "name": "Texas Propane Gas Association",
@@ -1023,15 +1012,15 @@
     "website": "http://www.txpropane.com/"
   },
   {
-    "name": "Propane Exchange at U-Haul",
-    "address": "12611 Research Blvd",
+    "name": "Amerigas Propane Exchange",
+    "address": "5445 US-290",
     "city": "Austin",
     "state": "TX",
-    "phone": "(512) 258-5255",
+    "phone": "",
     "type": "exchange",
-    "rating": 1,
-    "reviewCount": 4,
-    "website": "https://www.uhaul.com/Locations/Propane-near-Austin-TX-78759/737044/?utm_source=gmb&utm_medium=propane&utm_campaign=uhaulsmlm&utm_content=737044"
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": "https://www.amerigas.com/locations/find-propane"
   },
   {
     "name": "Propane Exchange",
@@ -1056,6 +1045,17 @@
     "website": "https://www.uhaul.com/Locations/Truck-Rentals-near-Austin-TX-78744/737023/?utm_source=gmb&utm_medium=primary&utm_campaign=uhaulsmlm&utm_content=737023"
   },
   {
+    "name": "Bubbas Got Gas",
+    "address": "4222 FM 621",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 392-9999",
+    "type": "refill,exchange",
+    "rating": 4.7,
+    "reviewCount": 126,
+    "website": "http://www.bubbasgotgas.com/"
+  },
+  {
     "name": "Texaco",
     "address": "13210 US-290",
     "city": "Austin",
@@ -1065,28 +1065,6 @@
     "rating": 4.5,
     "reviewCount": 128,
     "website": "https://www.texaco.com/"
-  },
-  {
-    "name": "RapidXChange Propane",
-    "address": "6903 Brodie Ln",
-    "city": "Austin",
-    "state": "TX",
-    "phone": "(800) 354-7250",
-    "type": "refill,exchange",
-    "rating": 0.0,
-    "reviewCount": 0,
-    "website": "https://www.rapidxchange.com/find-a-location/"
-  },
-  {
-    "name": "MAIN STOP",
-    "address": "3842 Airport Blvd",
-    "city": "Austin",
-    "state": "TX",
-    "phone": "(512) 472-1277",
-    "type": "refill,exchange",
-    "rating": 4,
-    "reviewCount": 2,
-    "website": ""
   },
   {
     "name": "Alamo Welding Supply",
@@ -1100,14 +1078,58 @@
     "website": "http://www.alamoweldingsupplyco.com/"
   },
   {
-    "name": "Bubbas Got Gas",
-    "address": "4222 FM 621",
+    "name": "MAIN STOP",
+    "address": "3842 Airport Blvd",
     "city": "Austin",
     "state": "TX",
-    "phone": "(512) 392-9999",
+    "phone": "(512) 472-1277",
     "type": "refill,exchange",
-    "rating": 4.7,
-    "reviewCount": 126,
-    "website": "http://www.bubbasgotgas.com/"
+    "rating": 4,
+    "reviewCount": 2,
+    "website": ""
+  },
+  {
+    "name": "Texas propane",
+    "address": "10814 N Lamar Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 939-5508",
+    "type": "refill,exchange",
+    "rating": 0.0,
+    "reviewCount": 0,
+    "website": ""
+  },
+  {
+    "name": "U-Haul at N Lamar",
+    "address": "5412 N Lamar Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 451-7365",
+    "type": "exchange",
+    "rating": 3,
+    "reviewCount": 138,
+    "website": "https://www.uhaul.com/Locations/Truck-Rentals-near-Austin-TX-78751/737051/?utm_source=gmb&utm_medium=primary&utm_campaign=uhaulsmlm&utm_content=737051"
+  },
+  {
+    "name": "Propane Plus, LLC",
+    "address": "5325 TX-29",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 756-4927",
+    "type": "refill,exchange",
+    "rating": 4.2,
+    "reviewCount": 15,
+    "website": "https://propaneplusatx.com/about-us"
+  },
+  {
+    "name": "Linde Welding Gas & Equipment Center",
+    "address": "2801 Montopolis Dr",
+    "city": "Austin",
+    "state": "TX",
+    "phone": "(512) 389-2323",
+    "type": "refill,exchange",
+    "rating": 4.4,
+    "reviewCount": 50,
+    "website": "https://stores.lindedirect.com/tx/austin/industrial-supply-70319.html"
   }
 ]
