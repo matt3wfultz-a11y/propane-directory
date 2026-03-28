@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BugJar — Catch · Breed · Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-root">
+    <div id="screen-title"   class="screen"></div>
+    <div id="screen-hub"     class="screen hidden"></div>
+    <div id="screen-explore" class="screen hidden"></div>
+    <div id="screen-battle"  class="screen hidden"></div>
+    <div id="screen-stable"  class="screen hidden"></div>
+    <div id="screen-breed"   class="screen hidden"></div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- Static data (no dependencies) -->
+  <script src="js/utils.js"></script>
+  <script src="js/moves.js"></script>
+  <script src="js/species.js"></script>
+
+  <!-- Core engine modules -->
+  <script src="js/genetics.js"></script>
+  <script src="js/monster.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/catch.js"></script>
+
+  <!-- State -->
+  <script src="js/state.js"></script>
+
+  <!-- UI -->
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/screen-title.js"></script>
+  <script src="js/ui/screen-hub.js"></script>
+  <script src="js/ui/screen-explore.js"></script>
+  <script src="js/ui/screen-battle.js"></script>
+  <script src="js/ui/screen-stable.js"></script>
+  <script src="js/ui/screen-breed.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="js/main.js"></script>
+</body>
+</html>
