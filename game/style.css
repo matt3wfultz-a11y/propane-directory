@@ -90,6 +90,29 @@ html, body {
 }
 .name-form input:focus { outline: none; border-color: var(--accent); }
 
+/* ── Starter Select ──────────────────────────────────────────────────────── */
+.starter-screen { overflow-y: auto; }
+.starter-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  padding: 0 12px; width: 100%; max-width: 560px;
+}
+@media (max-width: 480px) {
+  .starter-grid { grid-template-columns: 1fr; }
+}
+.starter-card {
+  background: var(--bg2); border: 2px solid var(--border);
+  border-radius: var(--radius); padding: 14px 10px; text-align: center;
+  cursor: pointer; transition: border-color 0.15s, transform 0.15s;
+}
+.starter-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.starter-card.starter-selected { border-color: var(--accent); background: #1a2a3a; }
+.starter-emoji  { font-size: 40px; margin-bottom: 6px; }
+.starter-label  { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent2); letter-spacing: 1px; margin-bottom: 2px; }
+.starter-name   { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.starter-tagline { font-size: 11px; color: var(--text-dim); margin: 4px 0 8px; line-height: 1.4; }
+.starter-stats  { font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+.starter-hint   { font-size: 13px; color: var(--text-dim); margin-top: 6px; font-style: italic; }
+
 /* ── Hub Screen ──────────────────────────────────────────────────────────── */
 .hub-screen { padding: 16px; }
 .hub-header  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
