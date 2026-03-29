@@ -1,89 +1,65 @@
-// screen-explore.js — Tile map exploration
+// screen-explore.js — Phaser 3 tile map exploration
 
 'use strict';
 
-// ── Asset paths ────────────────────────────────────────────────────────────
-const ASSET_TILESET  = 'assets/Tileset/spr_tileset_sunnysideworld_16px.png';
-const ASSET_FOREST   = 'assets/Tileset/spr_tileset_sunnysideworld_forest_32px.png';
-const ASSET_WALK     = 'assets/WALKING/base_walk_strip8.png';
-const ASSET_IDLE     = 'assets/IDLE/base_idle_strip9.png';
-
-// ── Tile source coords in the 16px main tileset (sx, sy of top-left pixel) ─
-// These are named constants — easy to adjust if the tile visually looks wrong.
-const TILE_SRC = {
-  '.': { sx: 16,  sy: 64  },   // flat ground
-  'g': { sx: 32,  sy: 80  },   // light grass
-  'G': { sx: 48,  sy: 80  },   // tall grass (encounter zone)
-};
-// 'w' wall tiles come from the 32px forest tileset (first tree frame, col 0 row 0)
-const WALL_SRC = { sx: 0, sy: 0, sw: 32, sh: 32 };
-
-// ── Render constants ───────────────────────────────────────────────────────
-const TILE_SIZE     = 32;   // px on canvas (2× the 16px source)
-const SRC_TILE_SIZE = 16;   // px in the tileset
-
-// Player sprite source size (each frame is 96×64 in the strip)
-const PLAYER_SRC_W = 96;
-const PLAYER_SRC_H = 64;
-// Draw player slightly larger than one tile so it's visible
-const PLAYER_DST_W = 48;
-const PLAYER_DST_H = 48;
-const WALK_FRAMES  = 8;
-const IDLE_FRAMES  = 9;
-
-// ── Map layout for Ashfield (16 × 12) ─────────────────────────────────────
-// '.' = path, 'g' = light grass (15% encounter), 'G' = tall grass (30%), 'w' = wall
+// ── Map layout (16 × 12) ───────────────────────────────────────────────────
+// '.' path  'g' light grass (15% encounter)  'G' tall grass (30%)  'w' wall
 const ASHFIELD_MAP = [
   'wwwwwwwwwwwwwwww',
   'w..............w',
   'w...gg....gg...w',
   'w...gGg..gGg...w',
   'w..gg..........w',
-  'w..gG.........gw',
-  'w..gG.........Gw',
+  'w..gG..........w',
+  'w..gG..........w',
   'w...gg..gg.....w',
   'w....gGgGg.....w',
   'w.....gg.......w',
   'w..............w',
   'wwwwwwwwwwwwwwww',
 ];
-const PLAYER_START = { col: 8, row: 5 };
+const PLAYER_START = { col: 11, row: 5 };
+
+// Tile frame indices in the 16px tileset (frame = row*64 + col)
+// Adjust these if the wrong tiles appear visually.
+const TILE_FRAMES = {
+  '.': 2,    // col 2,  row 0  — flat ground
+  'g': 66,   // col 2,  row 1  — light grass
+  'G': 67,   // col 3,  row 1  — tall grass
+};
+
+const TILE_PX   = 32;   // rendered tile size (2× the 16px source)
+const MAP_COLS  = ASHFIELD_MAP[0].length;
+const MAP_ROWS  = ASHFIELD_MAP.length;
+const MAP_W     = MAP_COLS * TILE_PX;
+const MAP_H     = MAP_ROWS * TILE_PX;
 
 // ── Module state ───────────────────────────────────────────────────────────
-let _imgs        = null;   // { tileset, forest, walk, idle }
-let _playerPos   = null;   // { col, row }
-let _facingLeft  = false;
-let _animFrame   = 0;
-let _isMoving    = false;
-let _animTimer   = null;
-let _rafId       = null;
-let _canvas      = null;
-let _ctx         = null;
+let _phaserGame  = null;
 let _currentArea = null;
-let _inMap       = false;
 
 // ── Entry point ────────────────────────────────────────────────────────────
 GameBus.on('screen:explore:enter', function () {
-  _inMap = false;
   _renderAreaSelect();
 });
 
-// Clean up map resources whenever we leave this screen
-['hub','battle','stable','breed','title'].forEach(s => {
-  GameBus.on(`screen:${s}:enter`, _cleanupMap);
+// Destroy Phaser when navigating away
+['hub', 'battle', 'stable', 'breed', 'title'].forEach(s => {
+  GameBus.on(`screen:${s}:enter`, _destroyPhaser);
 });
 
 // ── Area select ────────────────────────────────────────────────────────────
 function _renderAreaSelect() {
+  _destroyPhaser();
   const el = document.getElementById('screen-explore');
   const areas = getUnlockedAreas(GameState);
 
-  const areaCards = areas.map(area => {
-    const speciesNames = area.encounterTable.map(e => SPECIES[e.speciesId].name).join(', ');
+  const cards = areas.map(area => {
+    const names = area.encounterTable.map(e => SPECIES[e.speciesId].name).join(', ');
     return `<div class="area-card" data-area="${area.id}">
       <div class="area-name">${area.name}</div>
       <div class="area-desc">${area.description}</div>
-      <div class="area-bugs">Bugs: ${speciesNames}</div>
+      <div class="area-bugs">Bugs: ${names}</div>
     </div>`;
   }).join('');
 
@@ -94,12 +70,11 @@ function _renderAreaSelect() {
         <h2>🌿 Explore</h2>
       </div>
       <p class="explore-hint">Choose an area to search for wild bugs.</p>
-      <div class="area-grid">${areaCards}</div>
+      <div class="area-grid">${cards}</div>
     </div>
   `;
 
   document.getElementById('btn-back-hub').addEventListener('click', () => navigateTo('hub'));
-
   document.querySelectorAll('.area-card').forEach(card => {
     card.addEventListener('click', () => _enterMap(card.dataset.area));
   });
@@ -108,14 +83,8 @@ function _renderAreaSelect() {
 // ── Map entry ──────────────────────────────────────────────────────────────
 function _enterMap(areaId) {
   _currentArea = areaId;
-  _playerPos = { ...PLAYER_START };
-  _facingLeft = false;
-  _animFrame = 0;
-  _isMoving = false;
-  _inMap = true;
-
-  const area = AREAS[areaId];
-  const el = document.getElementById('screen-explore');
+  const area   = AREAS[areaId];
+  const el     = document.getElementById('screen-explore');
 
   el.innerHTML = `
     <div class="explore-screen">
@@ -125,9 +94,7 @@ function _enterMap(areaId) {
       </div>
       ${renderInventory()}
       <div class="map-container">
-        <canvas id="map-canvas" class="map-canvas"
-          width="${ASHFIELD_MAP[0].length * TILE_SIZE}"
-          height="${ASHFIELD_MAP.length * TILE_SIZE}"></canvas>
+        <div id="map-phaser-container"></div>
         <div class="dpad">
           <div></div>
           <button class="dpad-btn" id="dpad-up">▲</button>
@@ -144,191 +111,209 @@ function _enterMap(areaId) {
   `;
 
   document.getElementById('btn-back-areas').addEventListener('click', () => {
-    _cleanupMap();
+    _destroyPhaser();
     _renderAreaSelect();
   });
 
-  // D-pad
-  document.getElementById('dpad-up').addEventListener('click',    () => _movePlayer(0, -1));
-  document.getElementById('dpad-down').addEventListener('click',   () => _movePlayer(0,  1));
-  document.getElementById('dpad-left').addEventListener('click',   () => _movePlayer(-1, 0));
-  document.getElementById('dpad-right').addEventListener('click',  () => _movePlayer(1,  0));
+  // D-pad wired after Phaser boots (scene exposes move function)
+  _bootPhaser();
+}
 
-  // Keyboard
-  window.addEventListener('keydown', _onKeyDown);
+// ── Phaser boot ────────────────────────────────────────────────────────────
+function _bootPhaser() {
+  if (_phaserGame) _destroyPhaser();
 
-  _canvas = document.getElementById('map-canvas');
-  _ctx = _canvas.getContext('2d');
-  _ctx.imageSmoothingEnabled = false;
-
-  _loadImages().then(() => {
-    _startRenderLoop();
+  _phaserGame = new Phaser.Game({
+    type:            Phaser.AUTO,
+    width:           MAP_W,
+    height:          MAP_H,
+    parent:          'map-phaser-container',
+    backgroundColor: '#2d4a1e',
+    physics:         { default: 'arcade', arcade: { debug: false } },
+    scene:           [ExploreScene],
+    scale: {
+      mode:       Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+    },
+    // Suppress Phaser's banner in the console
+    banner: false,
   });
 }
 
-// ── Image loading ──────────────────────────────────────────────────────────
-function _loadImages() {
-  if (_imgs) return Promise.resolve();
-  const load = src => new Promise((res, rej) => {
-    const img = new Image();
-    img.onload = () => res(img);
-    img.onerror = rej;
-    img.src = src;
-  });
-  return Promise.all([
-    load(ASSET_TILESET),
-    load(ASSET_FOREST),
-    load(ASSET_WALK),
-    load(ASSET_IDLE),
-  ]).then(([tileset, forest, walk, idle]) => {
-    _imgs = { tileset, forest, walk, idle };
-  });
+function _destroyPhaser() {
+  if (_phaserGame) {
+    _phaserGame.destroy(true);
+    _phaserGame = null;
+  }
 }
 
-// ── Render loop ────────────────────────────────────────────────────────────
-function _startRenderLoop() {
-  const loop = () => {
-    if (!_inMap) return;
-    _renderFrame();
-    _rafId = requestAnimationFrame(loop);
-  };
-  _rafId = requestAnimationFrame(loop);
-}
+// ── Phaser Scene ───────────────────────────────────────────────────────────
+class ExploreScene extends Phaser.Scene {
+  constructor() {
+    super({ key: 'ExploreScene' });
+    this._playerCell = { ...PLAYER_START };
+    this._canMove    = true;
+  }
 
-function _renderFrame() {
-  if (!_ctx || !_imgs) return;
-  const map  = ASHFIELD_MAP;
-  const cols = map[0].length;
-  const rows = map.length;
-  _ctx.clearRect(0, 0, cols * TILE_SIZE, rows * TILE_SIZE);
+  preload() {
+    this.load.spritesheet('tiles',
+      'assets/Tileset/spr_tileset_sunnysideworld_16px.png',
+      { frameWidth: 16, frameHeight: 16 });
 
-  // Draw tiles
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      const code = map[row][col];
-      const dx = col * TILE_SIZE;
-      const dy = row * TILE_SIZE;
+    this.load.spritesheet('forest',
+      'assets/Tileset/spr_tileset_sunnysideworld_forest_32px.png',
+      { frameWidth: 32, frameHeight: 32 });
 
-      if (code === 'w') {
-        // Use forest tree tileset
-        _ctx.drawImage(
-          _imgs.forest,
-          WALL_SRC.sx, WALL_SRC.sy, WALL_SRC.sw, WALL_SRC.sh,
-          dx, dy, TILE_SIZE, TILE_SIZE
-        );
-      } else {
-        const src = TILE_SRC[code] || TILE_SRC['.'];
-        _ctx.drawImage(
-          _imgs.tileset,
-          src.sx, src.sy, SRC_TILE_SIZE, SRC_TILE_SIZE,
-          dx, dy, TILE_SIZE, TILE_SIZE
-        );
+    this.load.spritesheet('player_walk',
+      'assets/WALKING/base_walk_strip8.png',
+      { frameWidth: 96, frameHeight: 64 });
+
+    this.load.spritesheet('player_idle',
+      'assets/IDLE/base_idle_strip9.png',
+      { frameWidth: 96, frameHeight: 64 });
+  }
+
+  create() {
+    // ── Draw tile map ──────────────────────────────────────────────────────
+    for (let row = 0; row < MAP_ROWS; row++) {
+      for (let col = 0; col < MAP_COLS; col++) {
+        const code = ASHFIELD_MAP[row][col];
+        const cx   = col * TILE_PX + TILE_PX / 2;
+        const cy   = row * TILE_PX + TILE_PX / 2;
+
+        if (code === 'w') {
+          // Forest tree tile (32px native, fits our 32px grid)
+          this.add.image(cx, cy, 'forest', 0);
+        } else {
+          const frame = TILE_FRAMES[code] ?? TILE_FRAMES['.'];
+          this.add.image(cx, cy, 'tiles', frame).setScale(2);
+        }
       }
     }
+
+    // ── Animations ─────────────────────────────────────────────────────────
+    if (!this.anims.exists('walk')) {
+      this.anims.create({
+        key:       'walk',
+        frames:    this.anims.generateFrameNumbers('player_walk', { start: 0, end: 7 }),
+        frameRate: 8,
+        repeat:    -1,
+      });
+    }
+    if (!this.anims.exists('idle')) {
+      this.anims.create({
+        key:       'idle',
+        frames:    this.anims.generateFrameNumbers('player_idle', { start: 0, end: 8 }),
+        frameRate: 4,
+        repeat:    -1,
+      });
+    }
+
+    // ── Player sprite ───────────────────────────────────────────────────────
+    const startX = PLAYER_START.col * TILE_PX + TILE_PX / 2;
+    const startY = PLAYER_START.row * TILE_PX + TILE_PX / 2;
+    this._player = this.add.sprite(startX, startY, 'player_idle')
+      .setScale(0.4)      // 96px × 0.4 = ~38px — fits neatly in a 32px tile
+      .setDepth(10)
+      .play('idle');
+
+    // ── Input ───────────────────────────────────────────────────────────────
+    this._cursors = this.input.keyboard.createCursorKeys();
+    this._wasd    = this.input.keyboard.addKeys('W,A,S,D');
+
+    // ── Wire D-pad ──────────────────────────────────────────────────────────
+    // D-pad buttons live outside Phaser's canvas; wire them after scene boots.
+    const wire = (id, dx, dy) => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', () => this._doMove(dx, dy));
+    };
+    wire('dpad-up',    0, -1);
+    wire('dpad-down',  0,  1);
+    wire('dpad-left', -1,  0);
+    wire('dpad-right', 1,  0);
   }
 
-  // Draw player
-  const strip = _isMoving ? _imgs.walk : _imgs.idle;
-  const frames = _isMoving ? WALK_FRAMES : IDLE_FRAMES;
-  const frame = _animFrame % frames;
-  const sx = frame * PLAYER_SRC_W;
+  update() {
+    if (!this._canMove) return;
 
-  const px = _playerPos.col * TILE_SIZE + (TILE_SIZE - PLAYER_DST_W) / 2;
-  const py = _playerPos.row * TILE_SIZE + (TILE_SIZE - PLAYER_DST_H) / 2;
+    const c = this._cursors;
+    const w = this._wasd;
 
-  _ctx.save();
-  if (_facingLeft) {
-    // Flip horizontally around the player's centre
-    _ctx.translate(px + PLAYER_DST_W / 2, 0);
-    _ctx.scale(-1, 1);
-    _ctx.drawImage(strip, sx, 0, PLAYER_SRC_W, PLAYER_SRC_H, -PLAYER_DST_W / 2, py, PLAYER_DST_W, PLAYER_DST_H);
-  } else {
-    _ctx.drawImage(strip, sx, 0, PLAYER_SRC_W, PLAYER_SRC_H, px, py, PLAYER_DST_W, PLAYER_DST_H);
-  }
-  _ctx.restore();
-}
-
-// ── Movement ───────────────────────────────────────────────────────────────
-function _onKeyDown(e) {
-  const map = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right',
-                w:'up', s:'down', a:'left', d:'right',
-                W:'up', S:'down', A:'left', D:'right' };
-  const dir = map[e.key];
-  if (!dir) return;
-  e.preventDefault();
-  if (dir === 'up')    _movePlayer(0, -1);
-  if (dir === 'down')  _movePlayer(0,  1);
-  if (dir === 'left')  _movePlayer(-1, 0);
-  if (dir === 'right') _movePlayer(1,  0);
-}
-
-function _movePlayer(dx, dy) {
-  if (!_inMap) return;
-  const newCol = _playerPos.col + dx;
-  const newRow = _playerPos.row + dy;
-  const map = ASHFIELD_MAP;
-
-  // Bounds check
-  if (newRow < 0 || newRow >= map.length || newCol < 0 || newCol >= map[0].length) return;
-
-  const tile = map[newRow][newCol];
-  if (tile === 'w') return;  // wall — blocked
-
-  // Update position and facing
-  _playerPos = { col: newCol, row: newRow };
-  if (dx !== 0) _facingLeft = dx < 0;
-
-  // Walk animation
-  _isMoving = true;
-  clearTimeout(_animTimer);
-  _animFrame = (_animFrame + 1) % WALK_FRAMES;
-  _animTimer = setTimeout(() => {
-    _isMoving = false;
-    _animFrame = 0;
-  }, 300);
-
-  _onStep(tile);
-}
-
-// ── Encounter logic ────────────────────────────────────────────────────────
-function _onStep(tile) {
-  const chance = tile === 'G' ? 0.30 : tile === 'g' ? 0.15 : 0;
-  if (chance === 0 || Math.random() > chance) return;
-
-  // Check party
-  if (GameState.stable.length === 0) {
-    showToast('You need a bug to battle with!', 'error');
-    return;
-  }
-  const playerMon = GameState.stable.slice().sort((a, b) => b.currentHp - a.currentHp)[0];
-  if (!playerMon || playerMon.currentHp <= 0) {
-    showToast('All your bugs have fainted! Head to the stable to heal.', 'error');
-    navigateTo('hub');
-    return;
+    if      (Phaser.Input.Keyboard.JustDown(c.left)  || Phaser.Input.Keyboard.JustDown(w.A)) this._doMove(-1,  0);
+    else if (Phaser.Input.Keyboard.JustDown(c.right) || Phaser.Input.Keyboard.JustDown(w.D)) this._doMove( 1,  0);
+    else if (Phaser.Input.Keyboard.JustDown(c.up)    || Phaser.Input.Keyboard.JustDown(w.W)) this._doMove( 0, -1);
+    else if (Phaser.Input.Keyboard.JustDown(c.down)  || Phaser.Input.Keyboard.JustDown(w.S)) this._doMove( 0,  1);
   }
 
-  const wildBug = rollEncounter(_currentArea);
-  if (!wildBug) return;
+  _doMove(dx, dy) {
+    const newCol = this._playerCell.col + dx;
+    const newRow = this._playerCell.row + dy;
 
-  const sp = SPECIES[wildBug.speciesId];
-  showToast(`A wild ${sp.name} appeared!`, 'info');
+    if (newRow < 0 || newRow >= MAP_ROWS || newCol < 0 || newCol >= MAP_COLS) return;
+    const tile = ASHFIELD_MAP[newRow][newCol];
+    if (tile === 'w') return;
 
-  setTimeout(() => {
-    _cleanupMap();
-    navigateTo('battle', {
-      playerMonsterUid: playerMon.uid,
-      enemyMonster: wildBug,
-      battleType: 'wild',
-      returnToExplore: true,
-      areaId: _currentArea,
+    this._playerCell = { col: newCol, row: newRow };
+    this._canMove    = false;
+
+    // Flip sprite for left/right movement
+    if (dx < 0) this._player.setFlipX(true);
+    else if (dx > 0) this._player.setFlipX(false);
+
+    this._player.play('walk', true);
+
+    const targetX = newCol * TILE_PX + TILE_PX / 2;
+    const targetY = newRow * TILE_PX + TILE_PX / 2;
+
+    this.tweens.add({
+      targets:  this._player,
+      x:        targetX,
+      y:        targetY,
+      duration: 150,
+      ease:     'Linear',
+      onComplete: () => {
+        this._player.play('idle', true);
+        this._canMove = true;
+        this._checkEncounter(tile);
+      },
     });
-  }, 500);
-}
+  }
 
-// ── Cleanup ────────────────────────────────────────────────────────────────
-function _cleanupMap() {
-  _inMap = false;
-  window.removeEventListener('keydown', _onKeyDown);
-  if (_rafId) { cancelAnimationFrame(_rafId); _rafId = null; }
-  if (_animTimer) { clearTimeout(_animTimer); _animTimer = null; }
+  _checkEncounter(tile) {
+    const chance = tile === 'G' ? 0.30 : tile === 'g' ? 0.15 : 0;
+    if (chance === 0 || Math.random() > chance) return;
+
+    if (GameState.stable.length === 0) {
+      showToast('You need a bug to battle with!', 'error');
+      return;
+    }
+
+    const playerMon = GameState.stable
+      .slice()
+      .sort((a, b) => b.currentHp - a.currentHp)[0];
+
+    if (!playerMon || playerMon.currentHp <= 0) {
+      showToast('All your bugs have fainted! Head to the stable to heal.', 'error');
+      _destroyPhaser();
+      navigateTo('hub');
+      return;
+    }
+
+    const wildBug = rollEncounter(_currentArea);
+    if (!wildBug) return;
+
+    showToast(`A wild ${SPECIES[wildBug.speciesId].name} appeared!`, 'info');
+
+    this._canMove = false;
+    this.time.delayedCall(600, () => {
+      _destroyPhaser();
+      navigateTo('battle', {
+        playerMonsterUid: playerMon.uid,
+        enemyMonster:     wildBug,
+        battleType:       'wild',
+        returnToExplore:  true,
+        areaId:           _currentArea,
+      });
+    });
+  }
 }
