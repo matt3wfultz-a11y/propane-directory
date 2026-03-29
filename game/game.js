@@ -23,14 +23,11 @@ const MAP = [
   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
 ];
 
-// Tile frame indices in spr_tileset_sunnysideworld_16px.png
-// The sheet is 1024x1024 with 16px tiles = 64 tiles per row
-// frame = row * 64 + col
-const TILE_FRAMES = {
-  0: 2,    // grass  — col 2, row 0
-  1: 66,   // dirt   — col 2, row 1
-  2: null, // tree   — use forest spritesheet instead
-};
+// Grass tile frames from the 16px tileset (frame = row*64 + col)
+// Two alternating grass shades for the checkerboard look
+const GRASS_A = 2;   // col 2, row 0 — lighter grass
+const GRASS_B = 3;   // col 3, row 0 — slightly darker grass
+const DIRT    = 66;  // col 2, row 1 — dirt path
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -42,9 +39,15 @@ class GameScene extends Phaser.Scene {
       'assets/Tileset/spr_tileset_sunnysideworld_16px.png',
       { frameWidth: 16, frameHeight: 16 }
     );
-    this.load.spritesheet('trees',
-      'assets/Tileset/spr_tileset_sunnysideworld_forest_32px.png',
-      { frameWidth: 32, frameHeight: 32 }
+    // Round trees from the Plants pack — 4-frame sway animation, 32×34px each
+    this.load.spritesheet('tree1',
+      'assets/Plants/spr_deco_tree_01_strip4.png',
+      { frameWidth: 32, frameHeight: 34 }
+    );
+    // Tall pine trees — 4 frames, 28×43px each
+    this.load.spritesheet('tree2',
+      'assets/Plants/spr_deco_tree_02_strip4.png',
+      { frameWidth: 28, frameHeight: 43 }
     );
     this.load.spritesheet('player_walk',
       'assets/WALKING/base_walk_strip8.png',
@@ -57,7 +60,21 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
-    // Draw tiles
+    // Tree sway animations
+    this.anims.create({
+      key: 'tree1_sway',
+      frames: this.anims.generateFrameNumbers('tree1', { start: 0, end: 3 }),
+      frameRate: 4,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'tree2_sway',
+      frames: this.anims.generateFrameNumbers('tree2', { start: 0, end: 3 }),
+      frameRate: 3,
+      repeat: -1,
+    });
+
+    // Draw tiles — ground layer first, then trees on top
     for (let row = 0; row < ROWS; row++) {
       for (let col = 0; col < COLS; col++) {
         const tileType = MAP[row][col];
@@ -65,11 +82,28 @@ class GameScene extends Phaser.Scene {
         const y = row * TILE + TILE / 2;
 
         if (tileType === 2) {
-          // Tree — from forest sheet, native 32px
-          this.add.image(x, y, 'trees', 0);
+          // Grass under the tree
+          const grassFrame = (row + col) % 2 === 0 ? GRASS_A : GRASS_B;
+          this.add.image(x, y, 'tiles', grassFrame).setScale(2);
+
+          // Alternate round vs pine trees across the map for variety
+          const useRound = (row + col) % 3 !== 0;
+          const key = useRound ? 'tree1' : 'tree2';
+          const anim = useRound ? 'tree1_sway' : 'tree2_sway';
+          // Stagger animation start so trees don't all sway in sync
+          const offset = ((row * COLS + col) * 200) % 2000;
+          this.time.delayedCall(offset, () => {
+            this.add.sprite(x, y, key).setDepth(2).play(anim);
+          });
         } else {
-          // Ground/path — from main sheet, scaled 2x
-          this.add.image(x, y, 'tiles', TILE_FRAMES[tileType]).setScale(2);
+          // Checkerboard grass
+          const grassFrame = (row + col) % 2 === 0 ? GRASS_A : GRASS_B;
+          this.add.image(x, y, 'tiles', grassFrame).setScale(2);
+
+          // Dirt path overlay
+          if (tileType === 1) {
+            this.add.image(x, y, 'tiles', DIRT).setScale(2).setDepth(1);
+          }
         }
       }
     }
@@ -90,16 +124,16 @@ class GameScene extends Phaser.Scene {
 
     // Place player in the centre of the map
     this.player = this.add.sprite(
-      10 * TILE + TILE / 2,
-      7  * TILE + TILE / 2,
+      9 * TILE + TILE / 2,
+      7 * TILE + TILE / 2,
       'player_idle'
     ).setScale(0.5).setDepth(10).play('idle');
 
-    this._cell    = { col: 10, row: 7 };
+    this._cell    = { col: 9, row: 7 };
     this._canMove = true;
 
-    // Camera — zoom in 3× and follow player, clamped to map bounds
-    this.cameras.main.setZoom(3);
+    // Camera — 2× zoom, follows player, clamped to map
+    this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, COLS * TILE, ROWS * TILE);
     this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
 
