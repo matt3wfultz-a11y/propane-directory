@@ -4,7 +4,7 @@ const TILE   = 32;   // rendered tile size in pixels
 const COLS   = 20;
 const ROWS   = 15;
 
-// Simple map: 0 = grass, 1 = dirt path, 2 = tree (wall)
+// Simple map: 0 = grass, 1 = dirt path, 2 = tree (wall), 3 = building (wall)
 const MAP = [
   [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
   [2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2],
@@ -12,8 +12,8 @@ const MAP = [
   [2,0,2,2,0,0,0,0,0,1,0,0,0,0,0,2,2,0,0,2],
   [2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2],
   [2,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,2],
-  [2,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2],
-  [2,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2],
+  [2,0,0,0,1,0,0,0,3,3,3,0,0,0,1,0,0,0,0,2],
+  [2,0,0,0,1,0,0,0,3,3,3,0,0,0,1,0,0,0,0,2],
   [2,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2],
   [2,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,2],
   [2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2],
@@ -28,6 +28,13 @@ const MAP = [
 const GRASS_A = 2;   // col 2, row 0 — lighter grass
 const GRASS_B = 3;   // col 3, row 0 — slightly darker grass
 const DIRT    = 66;  // col 2, row 1 — dirt path
+
+// Building roof tiles — 3×2 arrangement using roof-coloured frames
+// These frames come from row 5 of the 16px tileset (frame = 5*64 + col)
+const BLDG = [
+  [324, 325, 326],  // top row: left corner, middle, right corner
+  [388, 389, 390],  // bottom row: left corner, middle, right corner
+];
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -81,7 +88,16 @@ class GameScene extends Phaser.Scene {
         const x = col * TILE + TILE / 2;
         const y = row * TILE + TILE / 2;
 
-        if (tileType === 2) {
+        if (tileType === 3) {
+          // Building — grass underneath, then roof tile on top
+          const grassFrame = (row + col) % 2 === 0 ? GRASS_A : GRASS_B;
+          this.add.image(x, y, 'tiles', grassFrame).setScale(2);
+          // Find position within the 3×2 building footprint (top-left at col 8, row 6)
+          const bRow = row - 6;
+          const bCol = col - 8;
+          const frame = BLDG[bRow][bCol];
+          this.add.image(x, y, 'tiles', frame).setScale(2).setDepth(3);
+        } else if (tileType === 2) {
           // Grass under the tree
           const grassFrame = (row + col) % 2 === 0 ? GRASS_A : GRASS_B;
           this.add.image(x, y, 'tiles', grassFrame).setScale(2);
@@ -124,12 +140,12 @@ class GameScene extends Phaser.Scene {
 
     // Place player in the centre of the map
     this.player = this.add.sprite(
-      9 * TILE + TILE / 2,
+      6 * TILE + TILE / 2,
       7 * TILE + TILE / 2,
       'player_idle'
     ).setScale(0.5).setDepth(10).play('idle');
 
-    this._cell    = { col: 9, row: 7 };
+    this._cell    = { col: 6, row: 7 };
     this._canMove = true;
 
     // Camera — 2× zoom, follows player, clamped to map
@@ -161,7 +177,7 @@ class GameScene extends Phaser.Scene {
 
     // Bounds + wall check
     if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS) return;
-    if (MAP[newRow][newCol] === 2) return;
+    if (MAP[newRow][newCol] === 2 || MAP[newRow][newCol] === 3) return;
 
     this._cell = { col: newCol, row: newRow };
     this._canMove = false;
