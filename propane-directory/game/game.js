@@ -93,7 +93,7 @@ class GameScene extends Phaser.Scene {
       10 * TILE + TILE / 2,
       7  * TILE + TILE / 2,
       'player_idle'
-    ).setScale(0.4).setDepth(10).play('idle');
+    ).setScale(2.0).setDepth(10).play('idle');
 
     this._cell    = { col: 10, row: 7 };
     this._canMove = true;
