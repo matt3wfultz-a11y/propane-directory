@@ -98,6 +98,11 @@ class GameScene extends Phaser.Scene {
     this._cell    = { col: 10, row: 7 };
     this._canMove = true;
 
+    // Camera — zoom in 2× and follow player, clamped to map bounds
+    this.cameras.main.setZoom(2);
+    this.cameras.main.setBounds(0, 0, COLS * TILE, ROWS * TILE);
+    this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
+
     // Input
     this.keys = this.input.keyboard.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT');
   }
