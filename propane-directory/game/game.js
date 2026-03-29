@@ -93,7 +93,7 @@ class GameScene extends Phaser.Scene {
       10 * TILE + TILE / 2,
       7  * TILE + TILE / 2,
       'player_idle'
-    ).setScale(2.0).setDepth(10).play('idle');
+    ).setScale(0.5).setDepth(10).play('idle');
 
     this._cell    = { col: 10, row: 7 };
     this._canMove = true;
@@ -108,10 +108,10 @@ class GameScene extends Phaser.Scene {
     const k = this.keys;
     let dx = 0, dy = 0;
 
-    if      (Phaser.Input.Keyboard.JustDown(k.A) || Phaser.Input.Keyboard.JustDown(k.LEFT))  dx = -1;
-    else if (Phaser.Input.Keyboard.JustDown(k.D) || Phaser.Input.Keyboard.JustDown(k.RIGHT)) dx =  1;
-    else if (Phaser.Input.Keyboard.JustDown(k.W) || Phaser.Input.Keyboard.JustDown(k.UP))    dy = -1;
-    else if (Phaser.Input.Keyboard.JustDown(k.S) || Phaser.Input.Keyboard.JustDown(k.DOWN))  dy =  1;
+    if      (k.A.isDown || k.LEFT.isDown)  dx = -1;
+    else if (k.D.isDown || k.RIGHT.isDown) dx =  1;
+    else if (k.W.isDown || k.UP.isDown)    dy = -1;
+    else if (k.S.isDown || k.DOWN.isDown)  dy =  1;
 
     if (dx !== 0 || dy !== 0) this._move(dx, dy);
   }
