@@ -187,14 +187,10 @@ function applyBattleResult(battleState, originalPlayerMonsterUid) {
   GameState.stats.totalBattles += 1;
 
   if (battleState.winner === 'player' && !battleState.caught) {
-    // XP reward
-    const xpGained = calcXPReward(battleState.enemyMonster);
+    // No XP from battles — bugs level up through breeding only
     const playerMon = getMonster(originalPlayerMonsterUid);
     if (playerMon) {
       playerMon.currentHp = battleState.playerMonster.currentHp;
-      const lvlMsgs = applyXP(playerMon, xpGained);
-      messages.push(`+${xpGained} XP`);
-      messages.push(...lvlMsgs);
       updateMonster(playerMon);
     }
   }
