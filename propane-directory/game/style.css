@@ -467,3 +467,41 @@ html, body {
   .battle-actions { grid-template-columns: 1fr; }
   .monster-grid   { grid-template-columns: 1fr; }
 }
+
+/* ── Overlay Panels ──────────────────────────────────────────────────────── */
+.panel-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.78);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: 16px;
+}
+.panel-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  width: 100%; max-width: 420px; max-height: 90vh;
+  overflow-y: auto; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.panel-card--wide { max-width: 540px; }
+.panel-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panel-card-header h2 { font-size: 18px; font-weight: 800; }
+.panel-title-logo { text-align: center; padding: 8px 0 4px; }
+.starter-hint { font-size: 13px; color: var(--text-dim); text-align: center; }
+
+/* Bag floating action button */
+.bag-fab {
+  position: fixed; bottom: 20px; right: 20px;
+  z-index: 50; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 24px;
+  padding: 10px 18px; color: var(--text);
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  box-shadow: var(--shadow); transition: filter 0.15s;
+}
+.bag-fab:hover { filter: brightness(1.2); }
+
+/* Battle log coloured messages */
+.log-super  { color: var(--warning); }
+.log-catch  { color: var(--success); }
+.log-faint  { color: var(--danger); }

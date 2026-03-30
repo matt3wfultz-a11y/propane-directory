@@ -148,6 +148,10 @@ class GameScene extends Phaser.Scene {
     this._cell    = { col: 6, row: 7 };
     this._canMove = true;
 
+    // Lock/unlock movement from battle overlay
+    GameBus.on('battle:lock',   () => { this._canMove = false; });
+    GameBus.on('battle:unlock', () => { this._canMove = true;  });
+
     // Camera — 2× zoom, follows player, clamped to map
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, COLS * TILE, ROWS * TILE);
@@ -195,9 +199,23 @@ class GameScene extends Phaser.Scene {
       ease:     'Linear',
       onComplete: () => {
         this.player.play('idle', true);
-        this._canMove = true;
+        const tileType = MAP[this._cell.row][this._cell.col];
+        if (tileType === 0 && Math.random() < 0.20) {
+          this._triggerEncounter();
+        } else {
+          this._canMove = true;
+        }
       },
     });
+  }
+  _triggerEncounter() {
+    if (typeof GameState === 'undefined' || !GameState?.stable?.length) {
+      this._canMove = true;
+      return;
+    }
+    const wildMon = rollEncounter('ASHFIELD');
+    if (!wildMon) { this._canMove = true; return; }
+    GameBus.emit('encounter', { wildMon, playerMon: GameState.stable[0] });
   }
 }
 
