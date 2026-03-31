@@ -493,6 +493,12 @@ html, body {
 .panel-title-logo { text-align: center; padding: 8px 0 4px; }
 .starter-hint { font-size: 13px; color: var(--text-dim); text-align: center; }
 
+/* Battle sprite slots */
+.battle-sprite-slot {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 64px; min-height: 64px;
+}
+
 /* Bag floating action button */
 .bag-fab {
   position: fixed; bottom: 20px; right: 20px;

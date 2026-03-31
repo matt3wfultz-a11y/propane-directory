@@ -3,6 +3,40 @@
 
 'use strict';
 
+/* ── Species → Flora & Fauna sprite sheet frame mapping ────────────────── */
+// Sheet: Item_Sheet_Flora&Fauna_0.png — 5 cols × 4 rows, 32×32 per frame
+// Frame index = row * 5 + col
+const SPECIES_SPRITE_FRAME = {
+  MISTMOTH:      0,   // white butterfly/moth
+  BOGSLOG:       1,   // green toad/marsh creature
+  SCORCHMITE:    3,   // red/fire beetle
+  FROSTLURK:     5,   // dark lurking predator
+  BRAMBLESTICK:  7,   // green leaf/stick creature
+  CRUSTWALL:    10,   // hard armored brown beetle
+  LUMIBEETLE:   11,   // blue bioluminescent creature
+  VOIDGRUB:     13,   // dark grub/crawler
+  DUSKWING:     16,   // dark winged creature
+  ZAPPFLY:      18,   // blue/teal dragonfly
+};
+
+function bugSprite(speciesId, size = 32) {
+  const frame = SPECIES_SPRITE_FRAME[speciesId] ?? 0;
+  const col   = frame % 5;
+  const row   = Math.floor(frame / 5);
+  const div   = document.createElement('div');
+  div.className = 'bug-sprite';
+  div.style.cssText = [
+    `width:${size}px`,
+    `height:${size}px`,
+    `flex-shrink:0`,
+    `background:url('assets/Item_Sheet_Flora%26Fauna_0.png') no-repeat`,
+    `background-position:-${col * size}px -${row * size}px`,
+    `background-size:${5 * size}px ${4 * size}px`,
+    `image-rendering:pixelated`,
+  ].join(';');
+  return div;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    TitlePanel — new-game wizard (name → starter pick → confirm)
 ═══════════════════════════════════════════════════════════════════════════ */
@@ -102,11 +136,11 @@ class BattlePanel {
     this._enemyName    = document.getElementById('battle-enemy-name');
     this._enemyHpBar   = document.getElementById('battle-enemy-hp-bar');
     this._enemyHpText  = document.getElementById('battle-enemy-hp-text');
-    this._enemyEmoji   = document.getElementById('battle-enemy-emoji');
+    this._enemySprite  = document.getElementById('battle-enemy-sprite');
     this._playerName   = document.getElementById('battle-player-name');
     this._playerHpBar  = document.getElementById('battle-player-hp-bar');
     this._playerHpText = document.getElementById('battle-player-hp-text');
-    this._playerEmoji  = document.getElementById('battle-player-emoji');
+    this._playerSprite = document.getElementById('battle-player-sprite');
     this._log          = document.getElementById('battle-log');
     this._fightBtn     = document.getElementById('btn-battle-fight');
     this._jarBtn       = document.getElementById('btn-battle-jar');
@@ -201,8 +235,10 @@ class BattlePanel {
     const es = SPECIES[em.speciesId];
     const ps = SPECIES[pm.speciesId];
 
-    this._enemyEmoji.textContent  = es ? es.emoji : '❓';
-    this._playerEmoji.textContent = ps ? ps.emoji : '🐛';
+    this._enemySprite.innerHTML = '';
+    this._enemySprite.appendChild(bugSprite(em.speciesId, 64));
+    this._playerSprite.innerHTML = '';
+    this._playerSprite.appendChild(bugSprite(pm.speciesId, 48));
 
     this._enemyName.textContent   = `${monsterName(em)}  Lv.${em.level}`;
     this._enemyHpText.textContent = `${Math.max(0, em.currentHp)} / ${em.stats.maxHp}`;
@@ -280,7 +316,6 @@ class RosterPanel {
       card.style.setProperty('--species-color', sp ? sp.color : '#6c8fff');
       card.innerHTML = `
         <div class="card-header">
-          <span class="mon-emoji">${sp ? sp.emoji : '❓'}</span>
           <span class="mon-name">${monsterName(mon)}</span>
           <span class="mon-level">Lv.${mon.level}</span>
         </div>
@@ -290,6 +325,7 @@ class RosterPanel {
         <div class="hp-text">${Math.max(0, mon.currentHp)} / ${mon.stats.maxHp} HP</div>
         <div class="dom-score">${sp ? sp.name : '?'} · ${sp ? sp.type : '?'}</div>
       `;
+      card.querySelector('.card-header').prepend(bugSprite(mon.speciesId, 32));
       this._list.appendChild(card);
     }
   }

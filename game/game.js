@@ -56,6 +56,11 @@ class GameScene extends Phaser.Scene {
       'assets/Plants/spr_deco_tree_02_strip4.png',
       { frameWidth: 28, frameHeight: 43 }
     );
+    // Bug sprites from Flora & Fauna sheet — 5×4 grid, 32×32 each
+    this.load.spritesheet('bugs',
+      'assets/Item_Sheet_Flora%26Fauna_0.png',
+      { frameWidth: 32, frameHeight: 32 }
+    );
     this.load.spritesheet('player_walk',
       'assets/WALKING/base_walk_strip8.png',
       { frameWidth: 96, frameHeight: 64 }
@@ -152,6 +157,14 @@ class GameScene extends Phaser.Scene {
     GameBus.on('battle:lock',   () => { this._canMove = false; });
     GameBus.on('battle:unlock', () => { this._canMove = true;  });
 
+    // Tile inspector — press I to browse tileset frames with frame numbers
+    this._inspectorActive = false;
+    this._inspectorGroup  = this.add.group();
+    this._inspectorOffset = 0;
+    this.input.keyboard.on('keydown-I', () => this._toggleInspector());
+    this.input.keyboard.on('keydown-COMMA',  () => this._shiftInspector(-128));
+    this.input.keyboard.on('keydown-PERIOD', () => this._shiftInspector(128));
+
     // Camera — 2× zoom, follows player, clamped to map
     this.cameras.main.setZoom(2);
     this.cameras.main.setBounds(0, 0, COLS * TILE, ROWS * TILE);
@@ -215,7 +228,71 @@ class GameScene extends Phaser.Scene {
     }
     const wildMon = rollEncounter('ASHFIELD');
     if (!wildMon) { this._canMove = true; return; }
-    GameBus.emit('encounter', { wildMon, playerMon: GameState.stable[0] });
+
+    // Flash the bug sprite at the player tile before showing the battle panel
+    const frame = (typeof SPECIES_SPRITE_FRAME !== 'undefined')
+      ? (SPECIES_SPRITE_FRAME[wildMon.speciesId] ?? 0) : 0;
+    const x = this._cell.col * TILE + TILE / 2;
+    const y = this._cell.row * TILE + TILE / 2;
+    const flash = this.add.image(x, y - 8, 'bugs', frame)
+      .setDepth(20).setScale(0).setOrigin(0.5);
+    this.tweens.add({
+      targets:  flash,
+      scale:    1.5,
+      duration: 180,
+      yoyo:     true,
+      hold:     350,
+      ease:     'Back.Out',
+      onComplete: () => {
+        flash.destroy();
+        GameBus.emit('encounter', { wildMon, playerMon: GameState.stable[0] });
+      },
+    });
+  }
+
+  // ── Dev tile inspector (press I, page with < >) ──────────────────────────
+  _toggleInspector() {
+    this._inspectorActive = !this._inspectorActive;
+    if (this._inspectorActive) {
+      this._renderInspector();
+    } else {
+      this._inspectorGroup.clear(true, true);
+    }
+  }
+
+  _shiftInspector(delta) {
+    if (!this._inspectorActive) return;
+    this._inspectorOffset = Math.max(0, this._inspectorOffset + delta);
+    this._inspectorGroup.clear(true, true);
+    this._renderInspector();
+  }
+
+  _renderInspector() {
+    const cam = this.cameras.main;
+    const startX = cam.scrollX + 4;
+    const startY = cam.scrollY + 4;
+    let f = this._inspectorOffset;
+    for (let row = 0; row < 8; row++) {
+      for (let col = 0; col < 16; col++) {
+        const x = startX + col * 38;
+        const y = startY + row * 38;
+        this._inspectorGroup.add(
+          this.add.image(x, y, 'tiles', f).setScale(2).setDepth(50)
+        );
+        this._inspectorGroup.add(
+          this.add.text(x - 14, y + 9, String(f),
+            { fontSize: '7px', color: '#ffffff', stroke: '#000', strokeThickness: 2 }
+          ).setDepth(51)
+        );
+        f++;
+      }
+    }
+    this._inspectorGroup.add(
+      this.add.text(startX, startY - 12,
+        `Tiles ${this._inspectorOffset}–${f - 1}  (< prev  > next  I close)`,
+        { fontSize: '8px', color: '#ffff00', stroke: '#000', strokeThickness: 2 }
+      ).setDepth(51)
+    );
   }
 }
 
