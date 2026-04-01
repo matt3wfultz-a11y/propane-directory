@@ -28,6 +28,10 @@ CITIES = [
     "Dallas, TX",
     "San Antonio, TX",
     "Austin, TX",
+    "Fort Worth, TX",
+    "El Paso, TX",
+    "Arlington, TX",
+    "Corpus Christi, TX",
 ]
 
 EXCHANGE_NAMES = {"blue rhino", "amerigas", "u-haul", "ferrellgas exchange"}
