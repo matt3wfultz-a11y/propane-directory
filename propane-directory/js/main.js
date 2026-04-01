@@ -28,7 +28,7 @@ function createListingCard(listing) {
             addressCountry: 'US'
         },
         telephone: listing.phone,
-        description: `Propane ${listing.type} services in ${listing.city}, TX`
+        description: `Propane ${listing.type} services in ${listing.city}, ${listing.state}`
     };
     if (listing.rating) {
         schema.aggregateRating = {
@@ -50,7 +50,7 @@ function createListingCard(listing) {
             <p class="phone"><a href="tel:${listing.phone}">${listing.phone}</a></p>
             <div class="services">${serviceTags}</div>
             ${listing.website ? `<p><a href="${listing.website}" target="_blank" rel="noopener">Visit Website</a></p>` : ''}
-            <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(listing.address + ', ' + listing.city + ', TX')}" target="_blank" rel="noopener">Get Directions</a>
+            <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(listing.address + ', ' + listing.city + ', ' + listing.state)}" target="_blank" rel="noopener">Get Directions</a>
         </div>
     `;
 }
@@ -94,6 +94,12 @@ function displayListings(listings, containerId = 'listingsContainer') {
 async function loadFeaturedListings() {
     await loadListings();
     const featured = listingsData.slice(0, 6);
+    displayListings(featured, 'featuredListings');
+}
+
+async function loadFeaturedListingsByState(state) {
+    await loadListings();
+    const featured = listingsData.filter(l => l.state === state).slice(0, 6);
     displayListings(featured, 'featuredListings');
 }
 

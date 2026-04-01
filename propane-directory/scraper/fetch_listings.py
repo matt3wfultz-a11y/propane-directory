@@ -32,6 +32,9 @@ CITIES = [
     "El Paso, TX",
     "Arlington, TX",
     "Corpus Christi, TX",
+    "Albuquerque, NM",
+    "Santa Fe, NM",
+    "Las Cruces, NM",
 ]
 
 EXCHANGE_NAMES = {"blue rhino", "amerigas", "u-haul", "ferrellgas exchange"}
@@ -88,7 +91,9 @@ def place_details(api_key, place_id):
 
 
 def fetch_city(api_key, location):
-    city_name = location.split(",")[0].strip()
+    parts = location.split(",")
+    city_name = parts[0].strip()
+    state_code = parts[1].strip() if len(parts) > 1 else "TX"
     print(f"  Fetching {location}...")
 
     query = f"propane {location}"
@@ -142,7 +147,7 @@ def fetch_city(api_key, location):
                 "name": name,
                 "address": address,
                 "city": city_name,
-                "state": "TX",
+                "state": state_code,
                 "phone": phone,
                 "type": service_type,
                 "rating": rating,

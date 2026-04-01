@@ -46,6 +46,56 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/new-mexico.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/albuquerque.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/santa-fe.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/las-cruces.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog/propane-exchange-vs-refill.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog/how-long-does-20lb-propane-tank-last.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog/how-to-refill-propane-tank.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog/what-size-propane-tank-do-i-need.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matt3wfultz-a11y.github.io/propane-directory/blog/how-to-store-propane-tanks-safely.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matt3wfultz-a11y.github.io/propane-directory/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
