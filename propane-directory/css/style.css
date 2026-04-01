@@ -67,67 +67,6 @@ nav a:hover {
     background: rgba(255,255,255,0.2);
 }
 
-/* Dropdown nav groups */
-.nav-group {
-    position: relative;
-}
-
-.nav-group-toggle {
-    color: white;
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: background 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.nav-group-toggle::after {
-    content: '▾';
-    font-size: 0.75rem;
-}
-
-.nav-group:hover .nav-group-toggle,
-.nav-group-toggle:focus {
-    background: rgba(255,255,255,0.2);
-    outline: none;
-}
-
-.nav-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #1a3a5c;
-    border-radius: 6px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-    min-width: 180px;
-    z-index: 100;
-    padding: 0.4rem 0;
-}
-
-.nav-group:hover .nav-dropdown,
-.nav-group:focus-within .nav-dropdown {
-    display: block;
-}
-
-.nav-dropdown a {
-    display: block;
-    padding: 0.5rem 1.25rem;
-    border-radius: 0;
-    white-space: nowrap;
-}
-
-.nav-dropdown a:hover {
-    background: rgba(255,255,255,0.15);
-}
 
 /* Main Content */
 main {
@@ -636,21 +575,23 @@ footer p {
 }
 
 .post-header {
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #f5f0e8;
-    padding-bottom: 1.5rem;
+    background: #1a3a5c;
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    margin: -2.5rem -2.5rem 2rem -2.5rem;
+    border-radius: 10px 10px 0 0;
 }
 
 .post-header h2 {
     font-family: 'Oswald', sans-serif;
     font-size: 2rem;
     font-weight: 700;
-    color: #1a3a5c;
+    color: white;
     margin-bottom: 0.5rem;
 }
 
 .post-header time {
-    color: #5a4a40;
+    color: rgba(255,255,255,0.7);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
