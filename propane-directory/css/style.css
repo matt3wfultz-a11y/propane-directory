@@ -19,28 +19,23 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%);
-    color: white;
+    background: #ffffff;
     padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-header h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.5px;
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
-header p {
-    opacity: 0.9;
-    margin-bottom: 1rem;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+.site-logo {
+    height: 70px;
+    width: auto;
+    display: block;
 }
 
 nav {
@@ -51,18 +46,19 @@ nav {
 }
 
 nav a {
-    color: white;
+    color: #1a3a5c;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
     letter-spacing: 0.5px;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 nav a:hover {
-    background: rgba(255,255,255,0.2);
+    background: #f0f4f8;
+    color: #e8621a;
 }
 
 
@@ -743,6 +739,20 @@ nav a:focus-visible,
     body {
         background-color: #1a1a1a;
         color: #e8e0d0;
+    }
+
+    header {
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    nav a {
+        color: #1a3a5c;
+    }
+
+    nav a:hover {
+        background: #e8e2d8;
+        color: #e8621a;
     }
 
     .hero h2,
