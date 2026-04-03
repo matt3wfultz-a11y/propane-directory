@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -668,17 +666,167 @@ footer p {
         font-size: 1.4rem;
     }
 
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+
     .search-box input,
     .search-box select {
         width: 100%;
     }
 
-    .city-grid,
+    .city-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .listings-grid {
         grid-template-columns: 1fr;
     }
 
     #map {
         height: 60vh;
+    }
+
+    .blog-post {
+        padding: 1.5rem;
+    }
+
+    .post-header {
+        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.3rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input,
+    .search-box select,
+    .search-box button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .city-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Focus states */
+nav a:focus-visible,
+.search-box button:focus-visible,
+.btn-primary:focus-visible,
+.btn-directions:focus-visible,
+.map-filter-btn:focus-visible {
+    outline: 3px solid #e8621a;
+    outline-offset: 2px;
+}
+
+.search-box input:focus-visible,
+.search-box select:focus-visible,
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 3px solid #e8621a;
+    outline-offset: 0;
+    border-color: #e8621a;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e8e0d0;
+    }
+
+    .hero h2,
+    .cities h3,
+    .featured h3,
+    .listings h3,
+    .city-card h4,
+    .listing-card h4,
+    .faq-item h4,
+    .city-info h3,
+    .about-directory h3,
+    .content h2,
+    .content h3,
+    .blog-card h4,
+    .blog-post h3,
+    .blog h3 {
+        color: #7eb8e8;
+    }
+
+    .city-card,
+    .listing-card,
+    .faq-item,
+    .city-info,
+    .about-directory,
+    .content,
+    .blog-card,
+    .blog-post {
+        background: #2a2a2a;
+        color: #e8e0d0;
+    }
+
+    .search-box input,
+    .search-box select,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        background: #2a2a2a;
+        border-color: #4a4040;
+        color: #e8e0d0;
+    }
+
+    .listing-card .address,
+    .city-card p,
+    .blog-card p,
+    .city-info p,
+    .about-directory p,
+    .blog-post p,
+    .blog-post ul,
+    .blog-post ol,
+    .faq-item p {
+        color: #c8bfb0;
+    }
+
+    .ads-top {
+        background: #2a2a2a;
+    }
+
+    .contact-info {
+        background: #2a2a2a;
+    }
+
+    .blog-post table td {
+        color: #e8e0d0;
+        border-bottom-color: #3a3a3a;
+    }
+
+    .blog-post table tr:nth-child(even) td {
+        background: #333;
+    }
+
+    .map-filter-btn {
+        background: #2a2a2a;
+        border-color: #7eb8e8;
+        color: #7eb8e8;
+    }
+
+    .map-filter-btn.active,
+    .map-filter-btn:hover {
+        background: #7eb8e8;
+        color: #1a1a1a;
+    }
+
+    .content a,
+    .blog-post a {
+        color: #7eb8e8;
     }
 }
