@@ -101,6 +101,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://findmypropane.com/blog/how-to-tell-if-propane-tank-is-empty.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findmypropane.com/blog/propane-vs-natural-gas-cost.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findmypropane.com/blog/how-to-light-a-propane-heater.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findmypropane.com/blog/how-much-does-propane-cost-per-gallon.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://findmypropane.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
