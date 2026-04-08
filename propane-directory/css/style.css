@@ -494,6 +494,65 @@ main {
     color: white;
 }
 
+/* Email Capture */
+.email-capture {
+    background: #1a3a5c;
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.email-capture h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.email-capture p {
+    font-size: 1rem;
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+}
+
+.btn-notify {
+    display: inline-block;
+    padding: 12px 36px;
+    background: #e8621a;
+    color: white;
+    border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-notify:hover {
+    background: #c4511a;
+}
+
+/* Google Form embed */
+.contact-form-section {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.google-form-embed {
+    width: 100%;
+    max-width: 600px;
+    min-height: 700px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
 /* Footer */
 footer {
     background: #1a3a5c;
