@@ -121,6 +121,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://findmypropane.com/blog/propane-leak-detection.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findmypropane.com/blog/propane-tank-recertification.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findmypropane.com/blog/propane-for-camping-and-rv.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://findmypropane.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
