@@ -1,145 +1,131 @@
-let listingsData = [];
+/*
+ * FindMyPropane — search & filtering.
+ *
+ * Listings are rendered statically into the HTML at build time (see build.py).
+ * On city pages this script only filters the pre-rendered cards. On the
+ * homepage and state pages it fetches data/listings.json to search across
+ * every city.
+ */
+
+var globalSearchState = null; // null = city page (filter static cards), '' = all, 'TX'/'NM' = state
+var listingsData = [];
+
+function enableGlobalSearch(state) {
+    globalSearchState = state || '';
+}
+
+function starString(rating) {
+    var full = Math.round(rating);
+    return '★'.repeat(full) + '☆'.repeat(5 - full);
+}
+
+function telHref(phone) {
+    var digits = phone.replace(/\D/g, '');
+    if (digits.length === 10) digits = '1' + digits;
+    return 'tel:+' + digits;
+}
+
+function escapeHtml(s) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(s));
+    return div.innerHTML;
+}
+
+function createListingCard(l) {
+    var services = l.type.split(',').map(function (s) { return s.trim().toLowerCase(); });
+    var tags = services.map(function (s) {
+        return '<span class="service-tag' + (s === 'exchange' ? ' exchange' : '') + '">' +
+            s.charAt(0).toUpperCase() + s.slice(1) + '</span>';
+    }).join('');
+    var rating = '';
+    if (l.rating) {
+        var count = l.reviewCount ? ' (' + l.reviewCount + ' review' + (l.reviewCount !== 1 ? 's' : '') + ')' : '';
+        rating = '<div class="rating">' + starString(l.rating) +
+            '<span class="score">' + l.rating + count + '</span></div>';
+    }
+    var dest = encodeURIComponent(l.address + ', ' + l.city + ', ' + l.state);
+    var website = l.website
+        ? '<a class="btn-website" href="' + escapeHtml(l.website) + '" target="_blank" rel="noopener nofollow">Website</a>'
+        : '';
+    return '<div class="listing-card">' +
+        '<h3>' + escapeHtml(l.name) + '</h3>' + rating +
+        '<p class="address">' + escapeHtml(l.address) + ', ' + escapeHtml(l.city) + ', ' + l.state + '</p>' +
+        '<p class="phone"><a href="' + telHref(l.phone) + '">' + escapeHtml(l.phone) + '</a></p>' +
+        '<div class="services">' + tags + '</div>' +
+        '<div class="card-actions">' +
+        '<a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=' + dest + '" target="_blank" rel="noopener">Directions</a>' +
+        website + '</div></div>';
+}
 
 async function loadListings() {
+    if (listingsData.length) return;
     try {
-        const response = await fetch('data/listings.json');
+        var response = await fetch('data/listings.json');
         listingsData = await response.json();
-    } catch (error) {
-        console.error('Error loading listings:', error);
+    } catch (e) {
         listingsData = [];
     }
 }
 
-function createListingCard(listing) {
-    const services = listing.type.split(',').map(s => s.trim());
-    const serviceTags = services.map(s => `<span class="service-tag">${s.charAt(0).toUpperCase() + s.slice(1)}</span>`).join('');
-
-    const stars = listing.rating ? '★'.repeat(Math.floor(listing.rating)) + (listing.rating % 1 >= 0.5 ? '½' : '') : '';
-
-    const schema = {
-        '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: listing.name,
-        address: {
-            '@type': 'PostalAddress',
-            streetAddress: listing.address,
-            addressLocality: listing.city,
-            addressRegion: listing.state,
-            addressCountry: 'US'
-        },
-        telephone: listing.phone,
-        description: `Propane ${listing.type} services in ${listing.city}, ${listing.state}`
-    };
-    if (listing.rating) {
-        schema.aggregateRating = {
-            '@type': 'AggregateRating',
-            ratingValue: listing.rating,
-            bestRating: '5',
-            worstRating: '1',
-            reviewCount: listing.reviewCount || '10'
-        };
-    }
-    if (listing.website) schema.url = listing.website;
-
-    return `
-        <div class="listing-card">
-            <script type="application/ld+json">${JSON.stringify(schema)}<\/script>
-            ${listing.rating ? `<div class="rating">${stars} (${listing.rating})</div>` : ''}
-            <h4>${listing.name}</h4>
-            <p class="address">${listing.address}, ${listing.city}, ${listing.state}</p>
-            <p class="phone"><a href="tel:${listing.phone}">${listing.phone}</a></p>
-            <div class="services">${serviceTags}</div>
-            ${listing.website ? `<p><a href="${listing.website}" target="_blank" rel="noopener">Visit Website</a></p>` : ''}
-            <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(listing.address + ', ' + listing.city + ', ' + listing.state)}" target="_blank" rel="noopener">Get Directions</a>
-        </div>
-    `;
-}
-
-function createInlineAdUnit() {
-    return `<div class="ad-inline">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3324674498417567"
-             data-ad-slot="1464992699"
-             data-ad-format="fluid"
-             data-ad-layout-key="-6t+ed+2i-1n-4w">
-        </ins>
-    </div>`;
-}
-
-function displayListings(listings, containerId = 'listingsContainer') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    if (listings.length === 0) {
-        container.innerHTML = '<p>No listings found. Try a different search.</p>';
-        return;
-    }
-
-    const parts = [];
-    listings.forEach((listing, i) => {
-        parts.push(createListingCard(listing));
-        if ((i + 1) % 3 === 0 && i + 1 < listings.length) {
-            parts.push(createInlineAdUnit());
-        }
+/* Filter the statically rendered cards on a city page. */
+function filterStaticCards(query, service) {
+    var container = document.getElementById('listingsContainer');
+    var noResults = document.getElementById('noResults');
+    var shown = 0;
+    container.querySelectorAll('.listing-card').forEach(function (card) {
+        var matches =
+            (!query || (card.dataset.name || '').indexOf(query) !== -1 ||
+                (card.dataset.city || '').indexOf(query) !== -1) &&
+            (!service || (card.dataset.services || '').indexOf(service) !== -1);
+        card.style.display = matches ? '' : 'none';
+        if (matches) shown++;
     });
-    container.innerHTML = parts.join('');
+    if (noResults) noResults.hidden = shown > 0;
+}
 
-    // Initialize any AdSense units injected into the grid
-    container.querySelectorAll('.adsbygoogle').forEach(() => {
-        (adsbygoogle = window.adsbygoogle || []).push({});
+/* Search all listings (homepage / state pages). */
+async function globalSearch(query, service) {
+    await loadListings();
+    var results = listingsData.filter(function (l) {
+        var inState = !globalSearchState || l.state === globalSearchState;
+        var matchesQuery = !query ||
+            l.name.toLowerCase().indexOf(query) !== -1 ||
+            l.city.toLowerCase().indexOf(query) !== -1;
+        var matchesService = !service || l.type.toLowerCase().indexOf(service) !== -1;
+        return inState && matchesQuery && matchesService;
     });
-}
-
-async function loadFeaturedListings() {
-    await loadListings();
-    const featured = listingsData.slice(0, 6);
-    displayListings(featured, 'featuredListings');
-}
-
-async function loadFeaturedListingsByState(state) {
-    await loadListings();
-    const featured = listingsData.filter(l => l.state === state).slice(0, 6);
-    displayListings(featured, 'featuredListings');
-}
-
-async function loadListingsByCity(city) {
-    await loadListings();
-    const filtered = listingsData.filter(listing => 
-        listing.city.toLowerCase() === city.toLowerCase()
-    );
-    displayListings(filtered);
+    var section = document.getElementById('searchResults');
+    var container = document.getElementById('listingsContainer');
+    var noResults = document.getElementById('noResults');
+    if (!section || !container) return;
+    section.hidden = false;
+    container.innerHTML = results.slice(0, 60).map(createListingCard).join('');
+    if (noResults) noResults.hidden = results.length > 0;
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function searchListings() {
-    const searchInput = document.getElementById('searchInput')?.value.toLowerCase() || '';
-    const serviceType = document.getElementById('serviceType')?.value || '';
-    const container = document.getElementById('listingsContainer');
-    
-    if (!container) {
-        window.location.href = `index.html?search=${encodeURIComponent(searchInput)}&service=${encodeURIComponent(serviceType)}`;
-        return;
+    var query = (document.getElementById('searchInput') || {}).value || '';
+    var service = (document.getElementById('serviceType') || {}).value || '';
+    query = query.trim().toLowerCase();
+    if (globalSearchState === null) {
+        filterStaticCards(query, service);
+    } else {
+        globalSearch(query, service);
     }
-    
-    const filtered = listingsData.filter(listing => {
-        const matchesSearch = listing.name.toLowerCase().includes(searchInput) ||
-                            listing.city.toLowerCase().includes(searchInput);
-        const matchesService = !serviceType || listing.type.toLowerCase().includes(serviceType);
-        
-        return matchesSearch && matchesService;
-    });
-    
-    displayListings(filtered);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const search = params.get('search');
-    const service = params.get('service');
-    
-    if (search || service) {
-        document.getElementById('searchInput').value = search || '';
-        document.getElementById('serviceType').value = service || '';
-        searchListings();
+document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('searchInput');
+    var select = document.getElementById('serviceType');
+    if (input) {
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') searchListings();
+        });
+        // Live filtering on city pages (static cards, no network needed)
+        if (globalSearchState === null) {
+            input.addEventListener('input', searchListings);
+        }
     }
+    if (select) select.addEventListener('change', searchListings);
 });
