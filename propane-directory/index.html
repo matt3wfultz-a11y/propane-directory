@@ -2,62 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FindMyPropane.com — Propane Refill & Exchange Directory</title>
-    <meta name="description" content="Find propane refill and exchange locations across Texas. Browse listings in Houston, Dallas, San Antonio, and Austin with addresses, phone numbers, and ratings.">
-    <meta property="og:title" content="FindMyPropane.com – Refill & Exchange Locations">
-    <meta property="og:description" content="Find propane refill and exchange locations near you across Texas. Addresses, phone numbers, and ratings for local suppliers.">
+    <title>Find Propane Near You — Refill &amp; Exchange Directory for Texas &amp; New Mexico</title>
+    <meta name="description" content="Find propane refill and exchange locations near you. 299 verified listings across 18 cities in Texas and New Mexico — addresses, phone numbers, prices, and customer ratings.">
+    <meta name="google-site-verification" content="ZLURmG6y8X0EaOgrUtOy6ULY9WfrQ1NNuwXbmps1Ius">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://findmypropane.com/">
+    <meta property="og:title" content="Find Propane Near You — Refill &amp; Exchange Directory for Texas &amp; New Mexico">
+    <meta property="og:description" content="Find propane refill and exchange locations near you. 299 verified listings across 18 cities in Texas and New Mexico — addresses, phone numbers, prices, and customer ratings.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://findmypropane.com/">
     <meta property="og:image" content="https://findmypropane.com/images/og-image.svg">
-    <meta name="google-site-verification" content="ZLURmG6y8X0EaOgrUtOy6ULY9WfrQ1NNuwXbmps1Ius" />
+    <meta property="og:site_name" content="FindMyPropane.com">
+    <meta name="twitter:card" content="summary">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="canonical" href="https://findmypropane.com/">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3324674498417567" crossorigin="anonymous"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3324674498417567",
-            enable_page_level_ads: true
-        });
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FindMyPropane.com",
+  "url": "https://findmypropane.com/",
+  "description": "Propane refill and exchange directory for Texas and New Mexico"
+}
     </script>
     <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "FindMyPropane.com",
-    "url": "https://findmypropane.com/",
-    "description": "Propane refill and exchange directory for Texas and New Mexico",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://findmypropane.com/index.html?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "FindMyPropane.com",
-    "url": "https://findmypropane.com/",
-    "logo": "https://findmypropane.com/images/logo.png",
-    "sameAs": [],
-    "description": "Independent propane refill and exchange directory covering Texas and New Mexico"
-  }
-]
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FindMyPropane.com",
+  "url": "https://findmypropane.com/",
+  "logo": "https://findmypropane.com/images/logo.png",
+  "description": "Independent propane refill and exchange directory covering Texas and New Mexico"
+}
     </script>
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="index.html"><img src="images/logo.png" alt="FindMyPropane.com" class="site-logo"></a>
-            <nav>
-                <a href="index.html">Home</a>
+            <a href="index.html" class="brand" aria-label="FindMyPropane.com home"><img src="images/logo.png" alt="" class="site-logo" width="44" height="44"><span class="brand-name">FindMy<span>Propane</span></span></a>
+            <nav aria-label="Main navigation">
+                <a href="index.html" aria-current="page">Home</a>
                 <a href="texas.html">Texas</a>
                 <a href="new-mexico.html">New Mexico</a>
                 <a href="blog.html">Blog</a>
@@ -68,77 +56,258 @@
         </div>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <h2>Find Propane Near You — Refill &amp; Exchange Locations</h2>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search by city or business name...">
-                <select id="serviceType">
+    <div class="hero-band">
+        <div class="container">
+            <h1>Find Propane Refill &amp; Exchange Locations Near You</h1>
+            <p class="tagline">299 verified propane locations across 18 cities in Texas and New Mexico — with addresses, phone numbers, services, and customer ratings for every listing.</p>
+            <div class="search-box" role="search">
+                <input type="text" id="searchInput" placeholder="Search by city or business name…" aria-label="Search listings">
+                <select id="serviceType" aria-label="Service type">
                     <option value="">All Services</option>
                     <option value="refill">Refill</option>
                     <option value="exchange">Exchange</option>
                 </select>
-                <button onclick="searchListings()">Search</button>
+                <button type="button" onclick="searchListings()">Search</button>
             </div>
-        </section>
+            <div class="hero-stats">
+                <span>299 locations</span>
+                <span>18 cities</span>
+                <span>2 states</span>
+                <span>Updated 2026-07-17</span>
+            </div>
+        </div>
+    </div>
 
-        <section class="ads-top">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3324674498417567" data-ad-slot="7605927466" data-ad-format="auto"></ins>
+    <main class="container">
+        <section id="searchResults" class="listings" hidden>
+            <h2>Search Results</h2>
+            <div id="listingsContainer" class="listings-grid"></div>
+            <p class="no-results" id="noResults" hidden>No listings match your search.</p>
         </section>
 
         <section class="cities">
-            <h3>Browse by City</h3>
+            <div class="section-head">
+                <h2>Texas Propane Locations</h2>
+                <a class="see-all" href="texas.html">All Texas →</a>
+            </div>
             <div class="city-grid">
                 <a href="houston.html" class="city-card">
-                    <h4>Houston</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Houston</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">32 locations →</span>
                 </a>
                 <a href="dallas.html" class="city-card">
-                    <h4>Dallas</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Dallas</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">15 locations →</span>
                 </a>
                 <a href="san-antonio.html" class="city-card">
-                    <h4>San Antonio</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>San Antonio</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">28 locations →</span>
                 </a>
                 <a href="austin.html" class="city-card">
-                    <h4>Austin</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Austin</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">31 locations →</span>
                 </a>
                 <a href="fort-worth.html" class="city-card">
-                    <h4>Fort Worth</h4>
-                    <p>Propane Refill &amp; Exchange</p>
-                </a>
-                <a href="el-paso.html" class="city-card">
-                    <h4>El Paso</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Fort Worth</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">44 locations →</span>
                 </a>
                 <a href="arlington.html" class="city-card">
-                    <h4>Arlington</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Arlington</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">29 locations →</span>
                 </a>
                 <a href="corpus-christi.html" class="city-card">
-                    <h4>Corpus Christi</h4>
-                    <p>Propane Refill &amp; Exchange</p>
+                    <h3>Corpus Christi</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">34 locations →</span>
+                </a>
+                <a href="el-paso.html" class="city-card">
+                    <h3>El Paso</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">11 locations →</span>
+                </a>
+                <a href="horizon-city.html" class="city-card">
+                    <h3>Horizon City</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">3 locations →</span>
+                </a>
+                <a href="socorro-tx.html" class="city-card">
+                    <h3>Socorro</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">3 locations →</span>
+                </a>
+                <a href="canutillo-tx.html" class="city-card">
+                    <h3>Canutillo</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">3 locations →</span>
+                </a>
+                <a href="fabens-tx.html" class="city-card">
+                    <h3>Fabens</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">3 locations →</span>
+                </a>
+                <a href="anthony-tx.html" class="city-card">
+                    <h3>Anthony (TX/NM)</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">4 locations →</span>
+                </a>
+            </div>
+            <div class="section-head">
+                <h2>New Mexico Propane Locations</h2>
+                <a class="see-all" href="new-mexico.html">All New Mexico →</a>
+            </div>
+            <div class="city-grid">
+                <a href="albuquerque.html" class="city-card">
+                    <h3>Albuquerque</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">1 location →</span>
+                </a>
+                <a href="santa-fe.html" class="city-card">
+                    <h3>Santa Fe</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">32 locations →</span>
+                </a>
+                <a href="las-cruces.html" class="city-card">
+                    <h3>Las Cruces</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">15 locations →</span>
+                </a>
+                <a href="alamogordo.html" class="city-card">
+                    <h3>Alamogordo</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">6 locations →</span>
+                </a>
+                <a href="deming.html" class="city-card">
+                    <h3>Deming</h3>
+                    <p>Propane refill &amp; exchange</p>
+                    <span class="count">5 locations →</span>
                 </a>
             </div>
         </section>
 
         <section class="featured">
-            <h3>Featured Listings</h3>
-            <div id="featuredListings" class="listings-grid"></div>
+            <div class="section-head">
+                <h2>Top-Rated Propane Suppliers</h2>
+                <a class="see-all" href="map.html">View on map →</a>
+            </div>
+            <div class="listings-grid">
+                <div class="listing-card" data-name="airgas store" data-city="fort worth" data-services="refill,exchange">
+                    <h3>Airgas Store</h3>
+                    <div class="rating">★★★★★<span class="score">5 (610 reviews)</span></div>
+                    <p class="address">801 E Northside Dr, Fort Worth, TX</p>
+                    <p class="phone"><a href="tel:+18178770148">(817) 877-0148</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=801+E+Northside+Dr,+Fort+Worth,+TX" target="_blank" rel="noopener">Directions</a>
+                        <a class="btn-website" href="https://locations.airgas.com/tx/fortworth/airgas-store-c310.html?utm_arg=3rd_party_local:Google::Industrial:C310" target="_blank" rel="noopener nofollow">Website</a>
+                    </div>
+                </div>
+                <div class="listing-card" data-name="henderson propane inc" data-city="houston" data-services="refill,exchange">
+                    <h3>Henderson Propane Inc</h3>
+                    <div class="rating">★★★★★<span class="score">5 (41 reviews)</span></div>
+                    <p class="address">1202 Trammel-Fresno Rd, Houston, TX</p>
+                    <p class="phone"><a href="tel:+12818358566">(281) 835-8566</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=1202+Trammel-Fresno+Rd,+Houston,+TX" target="_blank" rel="noopener">Directions</a>
+                        <a class="btn-website" href="http://propanerefillhouston.com/" target="_blank" rel="noopener nofollow">Website</a>
+                    </div>
+                </div>
+                <div class="listing-card" data-name="guadalupe gas company" data-city="san antonio" data-services="refill,exchange">
+                    <h3>Guadalupe Gas Company</h3>
+                    <div class="rating">★★★★★<span class="score">4.9 (158 reviews)</span></div>
+                    <p class="address">3720 S I-35 South Frontage Rd, San Antonio, TX</p>
+                    <p class="phone"><a href="tel:+18306252121">(830) 625-2121</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=3720+S+I-35+South+Frontage+Rd,+San+Antonio,+TX" target="_blank" rel="noopener">Directions</a>
+                        <a class="btn-website" href="http://www.guadalupegas.com/" target="_blank" rel="noopener nofollow">Website</a>
+                    </div>
+                </div>
+                <div class="listing-card" data-name="heine propane" data-city="fort worth" data-services="refill,exchange">
+                    <h3>Heine Propane</h3>
+                    <div class="rating">★★★★★<span class="score">4.9 (146 reviews)</span></div>
+                    <p class="address">4710 East US Hwy 377, Fort Worth, TX</p>
+                    <p class="phone"><a href="tel:+18173417240">(817) 341-7240</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=4710+East+US+Hwy+377,+Fort+Worth,+TX" target="_blank" rel="noopener">Directions</a>
+                        <a class="btn-website" href="https://www.heinepropane.com/?utm_source=google&amp;utm_medium=organic&amp;utm_campaign=gmb-listing" target="_blank" rel="noopener nofollow">Website</a>
+                    </div>
+                </div>
+                <div class="listing-card" data-name="tarrant welding &amp; industrial supply" data-city="fort worth" data-services="refill,exchange">
+                    <h3>Tarrant Welding &amp; Industrial Supply</h3>
+                    <div class="rating">★★★★★<span class="score">4.9 (66 reviews)</span></div>
+                    <p class="address">3233 Bryan Ave, Fort Worth, TX</p>
+                    <p class="phone"><a href="tel:+18179273331">(817) 927-3331</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=3233+Bryan+Ave,+Fort+Worth,+TX" target="_blank" rel="noopener">Directions</a>
+                        <a class="btn-website" href="https://www.tarrantweldingsupply.com/" target="_blank" rel="noopener nofollow">Website</a>
+                    </div>
+                </div>
+                <div class="listing-card" data-name="cy-fair propane company" data-city="houston" data-services="refill,exchange">
+                    <h3>Cy-Fair Propane Company</h3>
+                    <div class="rating">★★★★★<span class="score">4.9 (48 reviews)</span></div>
+                    <p class="address">23248 Northwest Fwy, Houston, TX</p>
+                    <p class="phone"><a href="tel:+12813734417">(281) 373-4417</a></p>
+                    <div class="services"><span class="service-tag">Refill</span><span class="service-tag exchange">Exchange</span></div>
+                    <div class="card-actions">
+                        <a class="btn-directions" href="https://www.google.com/maps/dir/?api=1&destination=23248+Northwest+Fwy,+Houston,+TX" target="_blank" rel="noopener">Directions</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="about-directory">
-            <h3>How This Directory Works</h3>
+            <h2>How This Directory Works</h2>
             <p>FindMyPropane lists propane refill and exchange locations across Texas and New Mexico. Each listing includes the business name, address, phone number, available services, and customer ratings. Use the search bar above to find locations by city or business name, or browse by city using the cards above.</p>
-            <p>Propane suppliers are categorized as <strong>Refill</strong> (fill your existing tank to capacity), <strong>Exchange</strong> (swap your empty tank for a pre-filled one), or both. Refill is generally the better value — you pay only for the gas you receive, and your tank is filled to its full rated capacity. Exchange kiosks, commonly found at hardware and grocery stores, are convenient but typically only fill tanks to 75% capacity.</p>
-            <p>If you operate a propane business and would like to be listed, use the <a href="about.html">About</a>
-                <a href="contact.html">Contact</a> page to submit your information.</p>
+            <p>Propane suppliers are categorized as <strong>Refill</strong> (fill your existing tank to capacity), <strong>Exchange</strong> (swap your empty tank for a pre-filled one), or both. Refill is generally the better value — you pay only for the gas you receive, and your tank is filled to its full rated capacity. Exchange kiosks, commonly found at hardware and grocery stores, are convenient but typically only fill tanks to 75% capacity. Read our <a href="blog/propane-exchange-vs-refill.html">refill vs. exchange guide</a> for the full cost breakdown.</p>
+            <p>If you operate a propane business and would like to be listed, use the <a href="contact.html">contact page</a> to submit your information.</p>
         </section>
 
-        <section class="ads-bottom">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3324674498417567" data-ad-slot="2526792928" data-ad-format="auto"></ins>
+        <section class="blog">
+            <div class="section-head">
+                <h2>Propane Guides &amp; Tips</h2>
+                <a class="see-all" href="blog.html">All guides →</a>
+            </div>
+            <div class="blog-grid">
+                <a href="blog/cheapest-propane-near-me.html" class="blog-card">
+                    <h3>How to Find the Cheapest Propane Near You</h3>
+                    <p>Compare refill vs exchange prices and learn 7 proven ways to pay less for propane.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+                <a href="blog/propane-exchange-vs-refill.html" class="blog-card">
+                    <h3>Propane Exchange vs Refill: Which Is the Better Deal?</h3>
+                    <p>Exchange tanks are only filled to 15 lbs and cost more per gallon. Here&#x27;s the full cost breakdown.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+                <a href="blog/how-much-does-propane-cost-per-gallon.html" class="blog-card">
+                    <h3>How Much Does Propane Cost Per Gallon?</h3>
+                    <p>Current price ranges, what drives them up or down, and how to lock in a better rate.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+                <a href="blog/how-long-does-20lb-propane-tank-last.html" class="blog-card">
+                    <h3>How Long Does a 20lb Propane Tank Last?</h3>
+                    <p>Burn time estimates for grills, patio heaters, fire pits, and camp stoves.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+                <a href="blog/how-to-refill-propane-tank.html" class="blog-card">
+                    <h3>How to Refill a Propane Tank: Step-by-Step</h3>
+                    <p>What to expect at a refill station and safety checks to do before you go.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+                <a href="blog/how-to-store-propane-tanks-safely.html" class="blog-card">
+                    <h3>How to Store Propane Tanks Safely</h3>
+                    <p>Temperature limits, indoor vs outdoor rules, and when to retire an old tank.</p>
+                    <span class="read-more">Read More →</span>
+                </a>
+            </div>
         </section>
     </main>
 
@@ -152,14 +321,55 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 FindMyPropane.com. All rights reserved.</p>
-            <p><a href="privacy.html">Privacy Policy</a> | <a href="about.html">About</a> | <a href="contact.html">Contact Us</a></p>
+            <div class="footer-cols">
+                <div>
+                    <h3>FindMyPropane.com</h3>
+                    <p>An independent directory of propane refill and exchange locations across Texas and New Mexico — with real addresses, phone numbers, service types, and customer ratings for every listing.</p>
+                </div>
+                <div>
+                    <h3>Texas</h3>
+                    <ul>
+                        <li><a href="houston.html">Houston (32)</a></li>
+                        <li><a href="dallas.html">Dallas (15)</a></li>
+                        <li><a href="san-antonio.html">San Antonio (28)</a></li>
+                        <li><a href="austin.html">Austin (31)</a></li>
+                        <li><a href="fort-worth.html">Fort Worth (44)</a></li>
+                        <li><a href="arlington.html">Arlington (29)</a></li>
+                        <li><a href="corpus-christi.html">Corpus Christi (34)</a></li>
+                        <li><a href="el-paso.html">El Paso (11)</a></li>
+                        <li><a href="texas.html">All Texas cities →</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>New Mexico</h3>
+                    <ul>
+                        <li><a href="albuquerque.html">Albuquerque (1)</a></li>
+                        <li><a href="santa-fe.html">Santa Fe (32)</a></li>
+                        <li><a href="las-cruces.html">Las Cruces (15)</a></li>
+                        <li><a href="alamogordo.html">Alamogordo (6)</a></li>
+                        <li><a href="deming.html">Deming (5)</a></li>
+                        <li><a href="new-mexico.html">All New Mexico cities →</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Propane Guides</a></li>
+                        <li><a href="map.html">Location Map</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FindMyPropane.com. All rights reserved.</p>
+                <p>Listing details can change — call ahead to confirm hours and pricing.</p>
+            </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        loadFeaturedListings();
-    </script>
+    <script>enableGlobalSearch();</script>
 </body>
 </html>
