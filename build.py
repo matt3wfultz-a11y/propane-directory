@@ -125,9 +125,12 @@ def head_html(title, description, canonical_path, schemas, og_type="website",
     <meta property="og:description" content="{esc(description)}">
     <meta property="og:type" content="{og_type}">
     <meta property="og:url" content="{canonical}">
-    <meta property="og:image" content="{BASE_URL}/images/og-image.svg">
+    <meta property="og:image" content="{BASE_URL}/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="FindMyPropane.com">
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
